@@ -1,12 +1,8 @@
 package org.openjfx;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import org.openjfx.view.ViewFactory;
 
 /**
  * JavaFX App
@@ -19,6 +15,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        ViewFactory viewFactory = new ViewFactory();
 
+        viewFactory.showMainView();
     }
 }
