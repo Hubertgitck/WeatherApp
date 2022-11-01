@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewFactory {
-    private boolean mainWindowInitialized = false;
-    private ArrayList<Stage> activeStages;
+    private final boolean mainWindowInitialized = false;
+    private final ArrayList<Stage> activeStages;
+    private final ColorTheme colorTheme = ColorTheme.DEFAULT;
+    //TODO
+   // private final FontSize fontSize = FontSize.MEDIUM;
 
     public ViewFactory() {
         this.activeStages = new ArrayList<Stage>();
@@ -41,6 +44,25 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+
+        //requesting focus on parent scene to disable default focus on text fields
+        parent.requestFocus();
+
         activeStages.add(stage);
+        updateStyles();
+
+    }
+    public void closeStage(Stage stageToClose){
+        stageToClose.close();
+        activeStages.remove(stageToClose);
+    }
+    public void updateStyles() {
+        for (Stage stage: activeStages){
+            Scene scene = stage.getScene();
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            //TODO
+            //scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
+        }
     }
 }
