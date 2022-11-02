@@ -1,17 +1,18 @@
 package org.openjfx.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Weather {
 
     private final String cityName;
     private final double tempInCelsius;
-    private final LocalDate date;
+    private final LocalDateTime dateTime;
 
-    public Weather(String cityName, double tempInCelsius, LocalDate date) {
+    public Weather(String cityName, double tempInCelsius, LocalDateTime dateTime) {
         this.cityName = cityName;
         this.tempInCelsius = tempInCelsius;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     public String getCityName() {
@@ -22,7 +23,7 @@ public class Weather {
         return tempInCelsius;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDate() {
+        return dateTime;
     }
 }

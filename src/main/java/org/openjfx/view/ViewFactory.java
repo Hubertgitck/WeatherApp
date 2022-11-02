@@ -28,10 +28,12 @@ public class ViewFactory {
     }
 
     public void showMainView(){
-        System.out.println("show main window called");
-
         BaseController controller = new MainViewController(this, "/fxml/MainView.fxml");
         initializeStage(controller);
+        setupWeatherData();
+    }
+
+    private void setupWeatherData() {
     }
 
     private void initializeStage(BaseController baseController){
@@ -56,8 +58,6 @@ public class ViewFactory {
 
         activeStages.add(stage);
         updateStyles();
-
-        weatherClient.getWeather("Kielce");
     }
     public void closeStage(Stage stageToClose){
         stageToClose.close();
