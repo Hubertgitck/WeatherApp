@@ -1,6 +1,6 @@
 package org.openjfx.model;
 
-import org.openjfx.model.client.MyWeatherClient;
+import org.openjfx.model.client.OpenWeatherClient;
 import org.openjfx.model.client.WeatherClient;
 
 public class WeatherServiceFactory {
@@ -10,6 +10,6 @@ public class WeatherServiceFactory {
     }
 
     private static WeatherClient createWeatherClient() {
-        return new MyWeatherClient();
+        return new OpenWeatherClient();
     }
 }

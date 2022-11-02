@@ -6,11 +6,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.openjfx.controller.BaseController;
 import org.openjfx.controller.MainViewController;
+import org.openjfx.model.Weather;
+import org.openjfx.model.client.OpenWeatherClient;
+import org.openjfx.model.client.WeatherClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewFactory {
+
+    WeatherClient weatherClient = new OpenWeatherClient();
+
     private final boolean mainWindowInitialized = false;
     private final ArrayList<Stage> activeStages;
     private final ColorTheme colorTheme = ColorTheme.DEFAULT;
@@ -51,6 +57,7 @@ public class ViewFactory {
         activeStages.add(stage);
         updateStyles();
 
+        weatherClient.getWeather("Kielce");
     }
     public void closeStage(Stage stageToClose){
         stageToClose.close();
