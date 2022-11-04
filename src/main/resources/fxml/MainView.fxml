@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -14,12 +15,12 @@
       <Line endX="250.0" endY="25.0" startX="250.0" startY="575.0" strokeWidth="0.5" AnchorPane.bottomAnchor="24.5" AnchorPane.leftAnchor="249.5" AnchorPane.rightAnchor="249.5" AnchorPane.topAnchor="24.5" />
       <TextField fx:id="leftColCountry" alignment="CENTER" layoutX="50.0" layoutY="35.0" prefHeight="12.0" prefWidth="150.0" promptText="Państwo" />
       <TextField fx:id="rightColCountry" alignment="CENTER" layoutX="300.0" layoutY="35.0" prefHeight="12.0" prefWidth="150.0" promptText="Państwo" />
-      <Label fx:id="leftColTemperature" alignment="CENTER" layoutX="70.0" layoutY="102.0" prefHeight="81.0" prefWidth="110.0">
+      <Label fx:id="leftColTemperature" alignment="CENTER" layoutX="50.0" layoutY="113.0" prefHeight="59.0" prefWidth="73.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Text fx:id="leftColDegreeSymbol" layoutX="169.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="°" wrappingWidth="22.046875">
+      <Text fx:id="leftColDegreeSymbol" layoutX="129.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="°" wrappingWidth="22.046875">
          <font>
             <Font size="24.0" />
          </font>
@@ -34,8 +35,8 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Label fx:id="leftColWeatherConditions" alignment="CENTER" layoutX="76.0" layoutY="183.0" text="DummyConditions" />
-      <Label fx:id="rightColWeatherConditions" alignment="CENTER" layoutX="320.0" layoutY="183.0" text="DummyConditions" />
+      <Label fx:id="leftColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="183.0" textAlignment="CENTER" />
+      <Label fx:id="rightColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="320.0" layoutY="183.0" textAlignment="CENTER" />
       <TableView layoutX="12.0" layoutY="250.0" prefHeight="320.0" prefWidth="225.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="259.0">
         <columns>
           <TableColumn prefWidth="87.0" />
@@ -46,5 +47,6 @@
       <Label alignment="CENTER" layoutX="18.0" layoutY="233.0" text="5-dniowa prognoza" />
       <TextField fx:id="leftColCity" alignment="CENTER" layoutX="50.0" layoutY="60.0" prefHeight="12.0" prefWidth="150.0" promptText="Miasto" />
       <TextField fx:id="rightColCity" alignment="CENTER" layoutX="300.0" layoutY="60.0" prefHeight="12.0" prefWidth="150.0" promptText="Miasto" />
+      <ImageView fx:id="leftColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

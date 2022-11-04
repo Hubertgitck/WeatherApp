@@ -33,9 +33,6 @@ public class ViewFactory {
         setupWeatherData();
     }
 
-    private void setupWeatherData() {
-    }
-
     private void initializeStage(BaseController baseController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
         fxmlLoader.setController(baseController);
@@ -62,6 +59,11 @@ public class ViewFactory {
     public void closeStage(Stage stageToClose){
         stageToClose.close();
         activeStages.remove(stageToClose);
+    }
+
+    private void setupWeatherData() {
+        Weather weather = weatherClient.getWeather("Kielce");
+
     }
     public void updateStyles() {
         for (Stage stage: activeStages){
