@@ -7,8 +7,9 @@ module org.openjfx {
     requires com.fasterxml.jackson.databind;
 
     opens org.openjfx to javafx.fxml;
+
     opens org.openjfx.controller to javafx.fxml;
-    opens org.openjfx.model to com.fasterxml.jackson.databind;
+    opens org.openjfx.model to com.fasterxml.jackson.databind, javafx.base;
     opens org.openjfx.model.client to com.fasterxml.jackson.databind;
 
     exports org.openjfx;

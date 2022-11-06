@@ -30,7 +30,6 @@ public class ViewFactory {
     public void showMainView(){
         BaseController controller = new MainViewController(this, "/fxml/MainView.fxml");
         initializeStage(controller);
-        setupWeatherData();
     }
 
     private void initializeStage(BaseController baseController){
@@ -61,10 +60,6 @@ public class ViewFactory {
         activeStages.remove(stageToClose);
     }
 
-    private void setupWeatherData() {
-        Weather weather = weatherClient.getWeather("Kielce");
-
-    }
     public void updateStyles() {
         for (Stage stage: activeStages){
             Scene scene = stage.getScene();

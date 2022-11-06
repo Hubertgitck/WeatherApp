@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="getWeatherData from API">
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="get all necessary data from api complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,15 +26,15 @@
       <list>
         <option value="FxmlFile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="get-data-fromAPI" />
+        <entry key="$PROJECT_DIR$" value="70e310593543c4a8fde8b94518cf1419cd901e5f" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,15 +50,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "settings.editor.selected.configurable": "editing.templates"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.openjfx.model.client" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.openjfx.view" />
     </key>
@@ -111,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667415011762</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="get all necessary data from api complete">
+      <created>1667578032564</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667578032564</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,7 +132,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main-view-setup" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -133,6 +158,7 @@
     <MESSAGE value="ViewFactory font and themes" />
     <MESSAGE value="getCityData from api done" />
     <MESSAGE value="getWeatherData from API" />
-    <option name="LAST_COMMIT_MESSAGE" value="getWeatherData from API" />
+    <MESSAGE value="get all necessary data from api complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="get all necessary data from api complete" />
   </component>
 </project>

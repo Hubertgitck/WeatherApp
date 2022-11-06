@@ -1,0 +1,24 @@
+*{
+    -fx-background-color: #7bb0db;
+}
+
+.table-view .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-alignment: center;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}

@@ -1,45 +1,62 @@
 package org.openjfx.model;
 
+import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.time.LocalDateTime;
 
 import static java.lang.Math.round;
 
 public class Weather {
 
-    private final String cityName;
-    private final String conditions;
-    private final double tempInCelsius;
-    private final LocalDateTime dateTime;
-    private final Image currentConditionsImage;
+    private final SimpleStringProperty cityName;
+    private final SimpleStringProperty conditions;
+    private final SimpleObjectProperty<Double> tempInCelsius;
+    private final SimpleStringProperty dateTime;
+    private final SimpleObjectProperty<Image> currentConditionsImage;
+    private final SimpleStringProperty dayOfTheWeek;
 
-    public Weather(String cityName, String conditions, double tempInCelsius, LocalDateTime dateTime, Image currentConditionsImage) {
-        this.cityName = cityName;
-        this.conditions = conditions;
-        this.tempInCelsius = tempInCelsius;
-        this.dateTime = dateTime;
-        this.currentConditionsImage = currentConditionsImage;
+    public Weather(String cityName, String conditions, double tempInCelsius, String dateTime, Image currentConditionsImage, String dayOfTheWeek) {
+        this.cityName = new SimpleStringProperty(cityName);
+        this.conditions = new SimpleStringProperty(conditions);
+        this.tempInCelsius = new SimpleObjectProperty<>(tempInCelsius);
+        this.dateTime = new SimpleStringProperty(dateTime);
+        this.currentConditionsImage = new SimpleObjectProperty<>(currentConditionsImage);
+        this.dayOfTheWeek = new SimpleStringProperty(dayOfTheWeek);
     }
 
     public String getCityName() {
-        return cityName;
+        return this.cityName.get();
     }
 
     public double getTempInCelsius() {
-        return round(tempInCelsius);
+        return round(this.tempInCelsius.get());
     }
 
-    public LocalDateTime getDate() {
-        return dateTime;
+    public String getDate() {
+        return this.dateTime.get();
     }
 
     public String getConditions() {
-        return conditions;
+        return this.conditions.get();
     }
 
     public Image getCurrentConditionsImage() {
-        return currentConditionsImage;
+        return this.currentConditionsImage.get();
+    }
+
+    public SimpleObjectProperty<Double> getTempInCelsiusProperty(){
+        return this.tempInCelsius;
+    }
+
+    public StringProperty getConditionsProperty(){
+        return this.conditions;
+    }
+
+    public SimpleObjectProperty<Image> getImageProperty(){
+        return this.currentConditionsImage;
+    }
+
+    public SimpleStringProperty getDayOfTheWeekProperty() {
+        return this.dayOfTheWeek;
     }
 }
