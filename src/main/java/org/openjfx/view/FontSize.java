@@ -10,7 +10,6 @@ public enum FontSize {
             case SMALL -> "/css/fontSmall.css";
             case MEDIUM -> "/css/fontMedium.css";
             case BIG -> "/css/fontBig.css";
-            default -> null;
         };
     }
 }

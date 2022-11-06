@@ -1,7 +1,5 @@
 package org.openjfx.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.openjfx.model.client.WeatherClient;
 
 import java.util.ArrayList;

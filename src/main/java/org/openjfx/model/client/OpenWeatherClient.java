@@ -14,8 +14,6 @@ import java.net.URL;
 import java.time.*;
 import java.util.*;
 
-import static java.lang.Math.floor;
-
 public class OpenWeatherClient implements WeatherClient {
     private final String apiKey = Config.apiKey;
 
@@ -36,7 +34,7 @@ public class OpenWeatherClient implements WeatherClient {
             conditions = capitalize(conditions);
 
             Image conditionsIcon = getConditionsIcon(apiResponse.findValue("icon").toString());
-            double tempInCelsius = apiResponse.findValue("temp").asDouble();
+            int tempInCelsius = apiResponse.findValue("temp").asInt();
             String dateTimeString = String.valueOf(apiResponse.findValue("dt_txt"));
             String dayOfTheWeek = getDayFromUnixTimestamp(apiResponse.findValue("dt").asLong());
 
@@ -71,7 +69,7 @@ public class OpenWeatherClient implements WeatherClient {
     }
 
      public ArrayList<Weather> getForecast(String cityName){
-        ArrayList<Weather> forecast = new ArrayList<Weather>();
+        ArrayList<Weather> forecast = new ArrayList<>();
         CityData cityData = getCityData(cityName);
 
         String urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityData.latitude() + "&lon=" +
@@ -94,8 +92,8 @@ public class OpenWeatherClient implements WeatherClient {
                     if (e.getDt() == finalNextDayNoonEpochSeconds) {
                         try {
                             String description = e.getWeather().get(0).getDescription();
-                            double temp = e.getMain().get("temp").asDouble();
-                            String dateFormatted = e.dtTXT;
+                            int temp = e.getMain().get("temp").asInt();
+                            String dateFormatted = e.getDtTXT();
                             Image conditionsIcon = getConditionsIcon(e.getWeather().get(0).getIcon());
                             String dayOfTheWeek = getDayFromUnixTimestamp(finalNextDayNoonEpochSeconds);
                             Weather weather = new Weather(cityName, description, temp, dateFormatted,conditionsIcon,dayOfTheWeek);

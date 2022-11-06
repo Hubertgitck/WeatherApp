@@ -6,16 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.openjfx.controller.BaseController;
 import org.openjfx.controller.MainViewController;
-import org.openjfx.model.Weather;
-import org.openjfx.model.client.OpenWeatherClient;
-import org.openjfx.model.client.WeatherClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ViewFactory {
-
-    WeatherClient weatherClient = new OpenWeatherClient();
 
     private final boolean mainWindowInitialized = false;
     private final ArrayList<Stage> activeStages;
@@ -24,7 +20,7 @@ public class ViewFactory {
    // private final FontSize fontSize = FontSize.MEDIUM;
 
     public ViewFactory() {
-        this.activeStages = new ArrayList<Stage>();
+        this.activeStages = new ArrayList<>();
     }
 
     public void showMainView(){
@@ -64,7 +60,7 @@ public class ViewFactory {
         for (Stage stage: activeStages){
             Scene scene = stage.getScene();
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ColorTheme.getCssPath(colorTheme))).toExternalForm());
             //TODO
             //scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
         }

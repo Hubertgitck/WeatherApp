@@ -1,15 +1,12 @@
 package org.openjfx.controller;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableDoubleValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +18,6 @@ import org.openjfx.model.WeatherServiceFactory;
 import org.openjfx.view.ViewFactory;
 
 import java.net.URL;
-import java.text.NumberFormat;
 import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable {
@@ -36,16 +32,6 @@ public class MainViewController extends BaseController implements Initializable 
     private Label leftColTemperature;
     @FXML
     private Label leftColWeatherConditions;
-    @FXML
-    private TextField rightColCity;
-    @FXML
-    private TextField rightColCountry;
-    @FXML
-    private Text rightColDegreeSymbol;
-    @FXML
-    private Label rightColTemperature;
-    @FXML
-    private Label rightColWeatherConditions;
     @FXML
     private AnchorPane rootAnchorPane;
     @FXML
@@ -62,6 +48,32 @@ public class MainViewController extends BaseController implements Initializable 
     @FXML
     private TableColumn<Weather, String> leftColForecastDay;
 
+
+    @FXML
+    private TextField rightColCity;
+
+    @FXML
+    private ImageView rightColConditionsIcon;
+    @FXML
+    private TableView<Weather> rightColForecastTableView;
+    @FXML
+    private TableColumn<Weather, String> rightColForecastConditions;
+
+    @FXML
+    private TableColumn<Weather, Image> rightColForecastConditionsIcon;
+
+    @FXML
+    private TableColumn<Weather, String> rightColForecastDay;
+
+    @FXML
+    private TableColumn<Weather, String> rightColForecastTemp;
+
+    @FXML
+    private Label rightColTemperature;
+
+    @FXML
+    private Label rightColWeatherConditions;
+
     public MainViewController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
 
@@ -72,41 +84,56 @@ public class MainViewController extends BaseController implements Initializable 
         setUpWeatherService();
         setUpWeatherData();
         setUpForecastData();
+
     }
 
     private void setUpWeatherService(){
         weatherService = WeatherServiceFactory.createWeatherService();
     }
     private void setUpWeatherData() {
+
         String leftColCityName = "Kielce";
-
-        leftColUpdate(leftColCityName);
+        String rightColCityName = "Londyn";
+        leftColWeatherUpdate(leftColCityName);
+        rightColWeatherUpdate(rightColCityName);
     }
-
-    private void leftColUpdate(String leftColCityName) {
+    private void leftColWeatherUpdate(String leftColCityName) {
         Weather weather = weatherService.getWeather(leftColCityName);
 
-        leftColTemperature.setText(Double.toString(weather.getTempInCelsius()));
+        leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
         leftColCity.setText(leftColCityName);
         leftColWeatherConditions.setText(weather.getConditions());
         leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
+    }
+
+    private void rightColWeatherUpdate(String rightColCityName) {
+        Weather weather = weatherService.getWeather(rightColCityName);
+
+        rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
+        rightColCity.setText(rightColCityName);
+        rightColWeatherConditions.setText(weather.getConditions());
+        rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
     }
 
     private void updateWeatherData(String cityName){
 
     }
     private void setUpForecastData() {
-        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast("Kielce"));
+        String leftColCityName = "Kielce";
+        String rightColCityName = "Londyn";
+        setUpLeftColForecast(leftColCityName);
+        setUpRightColForecast(rightColCityName);
+    }
+
+    private void setUpLeftColForecast(String leftColCityName){
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
 
         leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
-        //leftColForecastTemp.setCellValueFactory(data -> data.getValue().getTempInCelsiusProperty());
         leftColForecastTemp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Weather, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Weather, String> weatherDoubleCellDataFeatures) {
-                double temp =  weatherDoubleCellDataFeatures.getValue().getTempInCelsius();
-                int tempInt = (int) temp;
-                String displayTemp = temp + "\u00B0 C";
-                return new SimpleStringProperty(displayTemp);
+                int temp =  weatherDoubleCellDataFeatures.getValue().getTempInCelsius();
+                return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
             }
         });
         leftColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
@@ -128,5 +155,40 @@ public class MainViewController extends BaseController implements Initializable 
         leftColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
 
         leftColForecastTableView.setItems(forecast);
+    }
+
+    private void setUpRightColForecast(String rightColCityName){
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
+
+        rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
+        rightColForecastTemp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Weather, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Weather, String> weatherDoubleCellDataFeatures) {
+                int temp =  weatherDoubleCellDataFeatures.getValue().getTempInCelsius();
+                return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
+            }
+        });
+        rightColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
+
+        rightColForecastConditionsIcon.setCellFactory(tableCell ->{
+            final ImageView imageView = new ImageView();
+            imageView.setFitHeight(40);
+            imageView.setFitWidth(40);
+            TableCell<Weather, Image> cell = new TableCell<Weather, Image>() {
+                protected void updateItem(Image item, boolean empty) {
+                    if (item != null) {
+                        imageView.setImage(item);
+                    }
+                }
+            };
+            cell.setGraphic(imageView);
+            return cell;
+        });
+        rightColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
+
+        rightColForecastTableView.setItems(forecast);
+    }
+    private String convertToDegreeAndCelsiusFormat(int temperatureInt){
+        return temperatureInt + "\u00B0 C";
     }
 }

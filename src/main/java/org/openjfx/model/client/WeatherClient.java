@@ -6,6 +6,5 @@ import java.util.ArrayList;
 
 public interface WeatherClient {
     Weather getWeather(String cityName);
-
     ArrayList<Weather> getForecast(String cityName);
 }

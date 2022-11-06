@@ -10,7 +10,6 @@ public enum ColorTheme {
             case LIGHT -> "/css/themeLight.css";
             case DEFAULT -> "/css/themeDefault.css";
             case DARK -> "/css/themeDark.css";
-            default -> null;
         };
     }
 }
