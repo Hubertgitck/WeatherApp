@@ -1,17 +1,22 @@
 package org.openjfx.controller;
 
+import javafx.application.Platform;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 import org.openjfx.model.Weather;
 import org.openjfx.model.WeatherService;
 import org.openjfx.model.WeatherServiceFactory;
@@ -74,9 +79,39 @@ public class MainViewController extends BaseController implements Initializable 
     @FXML
     private Label rightColWeatherConditions;
 
+    @FXML
+    private Pane loadingPane;
+
+    @FXML
+    void leftColCityAction() {
+
+        new Thread ( () ->{
+            Platform.runLater( () -> {
+                String cityName = leftColCity.getText();
+                leftColWeatherUpdate(cityName);
+                setUpLeftColForecast(cityName);
+                leftColCity.getParent().requestFocus();
+            });
+        }).start();
+    }
+
+    @FXML
+    void rightColCityAction() {
+
+        new Thread ( () ->{
+            Platform.runLater( () -> {
+                String cityName = rightColCity.getText();
+                rightColWeatherUpdate(cityName);
+                setUpRightColForecast(cityName);
+                rightColCity.getParent().requestFocus();
+            });
+        }).start();
+    }
+
+
+
     public MainViewController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
-
     }
 
     @Override
@@ -84,7 +119,6 @@ public class MainViewController extends BaseController implements Initializable 
         setUpWeatherService();
         setUpWeatherData();
         setUpForecastData();
-
     }
 
     private void setUpWeatherService(){
@@ -92,10 +126,10 @@ public class MainViewController extends BaseController implements Initializable 
     }
     private void setUpWeatherData() {
 
-        String leftColCityName = "Kielce";
+        String leftColCityName = "fdsafsdaf";
         String rightColCityName = "Londyn";
         leftColWeatherUpdate(leftColCityName);
-        rightColWeatherUpdate(rightColCityName);
+        //rightColWeatherUpdate(rightColCityName);
     }
     private void leftColWeatherUpdate(String leftColCityName) {
         Weather weather = weatherService.getWeather(leftColCityName);
@@ -115,26 +149,20 @@ public class MainViewController extends BaseController implements Initializable 
         rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
     }
 
-    private void updateWeatherData(String cityName){
-
-    }
     private void setUpForecastData() {
-        String leftColCityName = "Kielce";
+        String leftColCityName = "fdsafsdaf";
         String rightColCityName = "Londyn";
         setUpLeftColForecast(leftColCityName);
-        setUpRightColForecast(rightColCityName);
+        //setUpRightColForecast(rightColCityName);
     }
 
     private void setUpLeftColForecast(String leftColCityName){
         ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
 
         leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
-        leftColForecastTemp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Weather, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Weather, String> weatherDoubleCellDataFeatures) {
-                int temp =  weatherDoubleCellDataFeatures.getValue().getTempInCelsius();
-                return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
-            }
+        leftColForecastTemp.setCellValueFactory(data -> {
+            int temp =  data.getValue().getTempInCelsius();
+            return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
         });
         leftColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
 
@@ -142,7 +170,7 @@ public class MainViewController extends BaseController implements Initializable 
             final ImageView imageView = new ImageView();
             imageView.setFitHeight(40);
             imageView.setFitWidth(40);
-            TableCell<Weather, Image> cell = new TableCell<Weather, Image>() {
+            TableCell<Weather, Image> cell = new TableCell<>() {
                 protected void updateItem(Image item, boolean empty) {
                     if (item != null) {
                         imageView.setImage(item);
@@ -161,12 +189,9 @@ public class MainViewController extends BaseController implements Initializable 
         ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
 
         rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
-        rightColForecastTemp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Weather, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Weather, String> weatherDoubleCellDataFeatures) {
-                int temp =  weatherDoubleCellDataFeatures.getValue().getTempInCelsius();
-                return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
-            }
+        rightColForecastTemp.setCellValueFactory(data -> {
+            int temp =  data.getValue().getTempInCelsius();
+            return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
         });
         rightColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
 
@@ -174,7 +199,7 @@ public class MainViewController extends BaseController implements Initializable 
             final ImageView imageView = new ImageView();
             imageView.setFitHeight(40);
             imageView.setFitWidth(40);
-            TableCell<Weather, Image> cell = new TableCell<Weather, Image>() {
+            TableCell<Weather, Image> cell = new TableCell<>() {
                 protected void updateItem(Image item, boolean empty) {
                     if (item != null) {
                         imageView.setImage(item);
@@ -191,4 +216,5 @@ public class MainViewController extends BaseController implements Initializable 
     private String convertToDegreeAndCelsiusFormat(int temperatureInt){
         return temperatureInt + "\u00B0 C";
     }
+
 }

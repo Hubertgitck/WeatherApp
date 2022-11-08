@@ -1,10 +1,12 @@
 package org.openjfx.model;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import org.openjfx.model.client.WeatherClient;
 
 import java.util.ArrayList;
 
-public class WeatherService {
+public class WeatherService{
 
     private final WeatherClient weatherClient;
 
@@ -19,4 +21,5 @@ public class WeatherService {
     public ArrayList<Weather> getForecast(String cityName){
         return weatherClient.getForecast(cityName);
     }
+
 }

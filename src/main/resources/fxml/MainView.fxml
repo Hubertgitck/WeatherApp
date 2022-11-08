@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -20,7 +21,7 @@
                   <Font name="Microsoft Sans Serif" size="32.0" />
                </font>
             </Label>
-            <Label fx:id="leftColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="162.0" prefHeight="17.0" prefWidth="200.0" textAlignment="CENTER">
+            <Label fx:id="leftColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="162.0" prefHeight="25.0" prefWidth="310.0" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
@@ -34,9 +35,9 @@
               </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="213.0" text="Prognoza pogody" />
-            <TextField fx:id="leftColCity" alignment="CENTER" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <TextField fx:id="leftColCity" alignment="CENTER" onAction="#leftColCityAction" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
-                  <Font name="Microsoft Sans Serif" size="36.0" />
+                  <Font name="Lato Regular" size="36.0" />
                </font>
             </TextField>
          </children>
@@ -63,7 +64,7 @@
                </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="213.0" text="Prognoza pogody" />
-            <TextField fx:id="rightColCity" alignment="CENTER" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <TextField fx:id="rightColCity" alignment="CENTER" onAction="#rightColCityAction" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
                   <Font name="Microsoft Sans Serif" size="36.0" />
                </font>
@@ -71,5 +72,13 @@
             <ImageView fx:id="rightColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="138.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
+      <Pane fx:id="loadingPane" layoutX="-2.0" opacity="0.6" prefHeight="600.0" prefWidth="660.0" visible="false">
+         <children>
+            <ImageView fitHeight="154.0" fitWidth="180.0" layoutX="241.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/loading.gif" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </children>
 </AnchorPane>

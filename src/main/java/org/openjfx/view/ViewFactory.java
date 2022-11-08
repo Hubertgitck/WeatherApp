@@ -42,6 +42,7 @@ public class ViewFactory {
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
+        
         stage.setScene(scene);
         stage.show();
 

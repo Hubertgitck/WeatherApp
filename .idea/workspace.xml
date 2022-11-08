@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Workspacefix">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Fixing minor bugs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/loading.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ColorTheme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ColorTheme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/FontSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/FontSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +63,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.openjfx.model.client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\icons" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.openjfx.view" />
@@ -128,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667578032564</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixing minor bugs">
+      <created>1667747840127</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667747840127</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,6 +171,7 @@
     <MESSAGE value="getCityData from api done" />
     <MESSAGE value="getWeatherData from API" />
     <MESSAGE value="get all necessary data from api complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="get all necessary data from api complete" />
+    <MESSAGE value="Fixing minor bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing minor bugs" />
   </component>
 </project>
