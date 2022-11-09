@@ -1,7 +1,5 @@
 package org.openjfx.model;
 
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import org.openjfx.model.client.WeatherClient;
 
 import java.util.ArrayList;

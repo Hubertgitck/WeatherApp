@@ -16,5 +16,4 @@ public abstract class BaseController {
         return fxmlName;
     }
 
-
 }

@@ -3,7 +3,9 @@ package org.openjfx.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.openjfx.controller.BaseController;
 import org.openjfx.controller.MainViewController;
 
@@ -16,6 +18,7 @@ public class ViewFactory {
     private final boolean mainWindowInitialized = false;
     private final ArrayList<Stage> activeStages;
     private final ColorTheme colorTheme = ColorTheme.DEFAULT;
+
     //TODO
    // private final FontSize fontSize = FontSize.MEDIUM;
 
@@ -41,7 +44,10 @@ public class ViewFactory {
         }
 
         Scene scene = new Scene(parent);
+        scene.setFill(Color.TRANSPARENT);
+
         Stage stage = new Stage();
+        stage.initStyle(StageStyle.TRANSPARENT);
         
         stage.setScene(scene);
         stage.show();

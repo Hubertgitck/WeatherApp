@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,24 +10,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootAnchorPane" prefHeight="600.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootAnchorPane" prefHeight="550.0" prefWidth="660.0" styleClass="rootAnchorPane" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Line endX="250.0" endY="25.0" startX="250.0" startY="575.0" strokeWidth="0.5" AnchorPane.bottomAnchor="24.5" AnchorPane.leftAnchor="329.5" AnchorPane.rightAnchor="289.5" AnchorPane.topAnchor="24.5" />
-      <Pane layoutX="12.0" layoutY="40.0">
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#c6d2dd" height="35.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="660.0" />
+      <Line endX="330.0" endY="500.0" startX="330.0" startY="160.0" stroke="WHITE" strokeWidth="0.75" />
+      <Button defaultButton="true" layoutX="611.0" layoutY="-9.0" mnemonicParsing="false" onAction="#exitButtonAction" scaleShape="false" styleClass="exitButton" text="X">
+         <font>
+            <Font name="Lato Bold" size="24.0" />
+         </font>
+      </Button>
+      <Pane layoutX="10.0" layoutY="30.0" styleClass="leftPaneWrapper">
          <children>
             <Label fx:id="leftColTemperature" alignment="CENTER" layoutX="53.0" layoutY="73.0" prefHeight="100.0" prefWidth="100.0">
                <font>
                   <Font name="Microsoft Sans Serif" size="32.0" />
                </font>
             </Label>
-            <Label fx:id="leftColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="162.0" prefHeight="25.0" prefWidth="310.0" textAlignment="CENTER">
+            <Label fx:id="leftColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutY="163.0" prefHeight="25.0" prefWidth="310.0" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="leftColForecastTableView" layoutY="240.0" prefHeight="280.0" prefWidth="310.0">
+            <TableView fx:id="leftColForecastTableView" layoutY="255.0" prefHeight="250.0" prefWidth="310.0">
               <columns>
                   <TableColumn fx:id="leftColForecastDay" prefWidth="40.0" text="Day" />
                 <TableColumn fx:id="leftColForecastTemp" prefWidth="45.0" text="Temp" />
@@ -34,16 +42,17 @@
                   <TableColumn fx:id="leftColForecastConditionsIcon" prefWidth="70.0" text="Icon" />
               </columns>
             </TableView>
-            <Label alignment="CENTER" layoutX="12.0" layoutY="213.0" text="Prognoza pogody" />
-            <TextField fx:id="leftColCity" alignment="CENTER" onAction="#leftColCityAction" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" text="Prognoza pogody" />
+            <TextField fx:id="leftColCity" alignment="CENTER" onAction="#leftColCityAction" onMouseClicked="#leftColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
                   <Font name="Lato Regular" size="36.0" />
                </font>
             </TextField>
+            <ImageView fx:id="leftColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+            <Line endX="265.0" endY="70.0" startX="45.0" startY="70.0" stroke="WHITE" strokeWidth="0.75" />
          </children>
       </Pane>
-      <ImageView fx:id="leftColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" />
-      <Pane layoutX="343.0" layoutY="40.0">
+      <Pane layoutX="340.0" layoutY="30.0" styleClass="rightPaneWrapper">
          <children>
             <Label fx:id="rightColTemperature" alignment="CENTER" layoutX="53.0" layoutY="73.0" prefHeight="100.0" prefWidth="100.0">
                <font>
@@ -55,7 +64,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="rightColForecastTableView" layoutY="240.0" prefHeight="280.0" prefWidth="310.0">
+            <TableView fx:id="rightColForecastTableView" layoutY="255.0" prefHeight="250.0" prefWidth="310.0">
                <columns>
                   <TableColumn fx:id="rightColForecastDay" prefWidth="40.0" text="Day" />
                   <TableColumn fx:id="rightColForecastTemp" prefWidth="45.0" text="Temp" />
@@ -63,16 +72,17 @@
                   <TableColumn fx:id="rightColForecastConditionsIcon" prefWidth="70.0" text="Icon" />
                </columns>
             </TableView>
-            <Label alignment="CENTER" layoutX="12.0" layoutY="213.0" text="Prognoza pogody" />
-            <TextField fx:id="rightColCity" alignment="CENTER" onAction="#rightColCityAction" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" text="Prognoza pogody" />
+            <TextField fx:id="rightColCity" alignment="CENTER" onAction="#rightColCityAction" onMouseClicked="#rightColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
                   <Font name="Microsoft Sans Serif" size="36.0" />
                </font>
             </TextField>
-            <ImageView fx:id="rightColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="138.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="rightColConditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="140.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+            <Line endX="265.0" endY="70.0" startX="45.0" startY="70.0" stroke="WHITE" strokeWidth="0.75" />
          </children>
       </Pane>
-      <Pane fx:id="loadingPane" layoutX="-2.0" opacity="0.6" prefHeight="600.0" prefWidth="660.0" visible="false">
+      <Pane fx:id="loadingPane" layoutX="-2.0" opacity="0.6" prefHeight="550.0" prefWidth="660.0" visible="false">
          <children>
             <ImageView fitHeight="154.0" fitWidth="180.0" layoutX="241.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
                <image>

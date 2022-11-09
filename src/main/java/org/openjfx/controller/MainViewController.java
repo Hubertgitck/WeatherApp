@@ -1,14 +1,9 @@
 package org.openjfx.controller;
 
 import javafx.application.Platform;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,8 +20,17 @@ import org.openjfx.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainViewController extends BaseController implements Initializable {
+public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
+    private final DraggableMaker draggableMaker = new DraggableMaker();
+
+    private final static PersistenceCities persistenceCities = new PersistenceCities();
+
+    @FXML
+    void exitButtonAction() {
+        Platform.exit();
+    }
+
     @FXML
     private TextField leftColCity;
     @FXML
@@ -83,8 +87,17 @@ public class MainViewController extends BaseController implements Initializable 
     private Pane loadingPane;
 
     @FXML
-    void leftColCityAction() {
+    void leftColCityOnMouseClicked() {
+        setupLoseFocusWhenClickedOutside();
+    }
 
+    @FXML
+    void rightColCityOnMouseClicked() {
+        setupLoseFocusWhenClickedOutside();
+    }
+
+    @FXML
+    void leftColCityAction() {
         new Thread ( () ->{
             Platform.runLater( () -> {
                 String cityName = leftColCity.getText();
@@ -97,7 +110,6 @@ public class MainViewController extends BaseController implements Initializable 
 
     @FXML
     void rightColCityAction() {
-
         new Thread ( () ->{
             Platform.runLater( () -> {
                 String cityName = rightColCity.getText();
@@ -109,27 +121,31 @@ public class MainViewController extends BaseController implements Initializable 
     }
 
 
-
     public MainViewController(ViewFactory viewFactory, String fxmlName) {
         super(viewFactory, fxmlName);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        draggableMaker.makeWindowDraggable(rootAnchorPane);
         setUpWeatherService();
         setUpWeatherData();
         setUpForecastData();
     }
-
     private void setUpWeatherService(){
         weatherService = WeatherServiceFactory.createWeatherService();
     }
     private void setUpWeatherData() {
+/*        List<String> rememberedCitiesList = persistenceCities.loadCitiesFromPersistance();
+        if (rememberedCitiesList.size() == 1){
+            leftColWeatherUpdate(rememberedCitiesList.get(0));
+        } else if(rememberedCitiesList.size() == 2){
+            leftColWeatherUpdate(rememberedCitiesList.get(0));
+            rightColWeatherUpdate(rememberedCitiesList.get(1));
+        }*/
 
-        String leftColCityName = "fdsafsdaf";
-        String rightColCityName = "Londyn";
-        leftColWeatherUpdate(leftColCityName);
-        //rightColWeatherUpdate(rightColCityName);
+        leftColWeatherUpdate("Kielce");
+        rightColWeatherUpdate("Madryt");
     }
     private void leftColWeatherUpdate(String leftColCityName) {
         Weather weather = weatherService.getWeather(leftColCityName);
@@ -150,10 +166,9 @@ public class MainViewController extends BaseController implements Initializable 
     }
 
     private void setUpForecastData() {
-        String leftColCityName = "fdsafsdaf";
-        String rightColCityName = "Londyn";
-        setUpLeftColForecast(leftColCityName);
-        //setUpRightColForecast(rightColCityName);
+
+        setUpLeftColForecast("Kielce");
+        setUpRightColForecast("Madryt");
     }
 
     private void setUpLeftColForecast(String leftColCityName){
@@ -215,6 +230,15 @@ public class MainViewController extends BaseController implements Initializable 
     }
     private String convertToDegreeAndCelsiusFormat(int temperatureInt){
         return temperatureInt + "\u00B0 C";
+    }
+
+    private void setupLoseFocusWhenClickedOutside(){
+        System.out.println(rootAnchorPane.getScene());
+        rootAnchorPane.getScene().setOnMousePressed(event -> {
+            if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())){
+                rootAnchorPane.requestFocus();
+            }
+        });
     }
 
 }

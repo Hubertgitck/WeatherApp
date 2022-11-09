@@ -130,13 +130,13 @@ public class OpenWeatherClient implements WeatherClient {
     private String getDayFromUnixTimestamp(long epochSeconds){
         int dayOfTheWeek = (int) (((epochSeconds / 86400) + 4) %7);
         return switch (dayOfTheWeek){
-            case 0 -> "Sun";
-            case 1 -> "Mon";
-            case 2 -> "Tue";
-            case 3 -> "Wed";
-            case 4 -> "Thu";
-            case 5 -> "Fri";
-            case 6 -> "Say";
+            case 0 -> "Niedz";
+            case 1 -> "Pon";
+            case 2 -> "Wt";
+            case 3 -> "Śr";
+            case 4 -> "Czw";
+            case 5 -> "Pt";
+            case 6 -> "Sob";
             default -> throw new IllegalStateException("Unexpected value: " + dayOfTheWeek);
         };
     }
