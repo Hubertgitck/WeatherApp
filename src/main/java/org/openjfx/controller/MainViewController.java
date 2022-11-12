@@ -10,11 +10,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.openjfx.model.Weather;
 import org.openjfx.model.WeatherService;
 import org.openjfx.model.WeatherServiceFactory;
+import org.openjfx.view.IconsEnum;
+import org.openjfx.view.ImageFactory;
 import org.openjfx.view.ViewFactory;
 
 import java.net.URL;
@@ -26,11 +29,14 @@ public class MainViewController extends BaseController implements Initializable{
 
     private final static PersistenceCities persistenceCities = new PersistenceCities();
 
+    private final ImageFactory imageFactory = new ImageFactory();
+
     @FXML
     void exitButtonAction() {
         Platform.exit();
     }
-
+    @FXML
+    private Button exitButton;
     @FXML
     private TextField leftColCity;
     @FXML
@@ -84,7 +90,26 @@ public class MainViewController extends BaseController implements Initializable{
     private Label rightColWeatherConditions;
 
     @FXML
-    private Pane loadingPane;
+    private Button menuButton;
+
+    @FXML
+    void menuOnMouseEntered() {
+        menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_GREEN),30,30));
+    }
+
+    @FXML
+    void menuOnMouseExited() {
+        menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
+    }
+
+    @FXML
+    void exitOnMouseEntered() {
+        exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_RED),30,30));
+    }
+    @FXML
+    void exitOnMouseExited() {
+        exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
+    }
 
     @FXML
     void leftColCityOnMouseClicked() {
@@ -98,26 +123,16 @@ public class MainViewController extends BaseController implements Initializable{
 
     @FXML
     void leftColCityAction() {
-        new Thread ( () ->{
-            Platform.runLater( () -> {
-                String cityName = leftColCity.getText();
-                leftColWeatherUpdate(cityName);
-                setUpLeftColForecast(cityName);
-                leftColCity.getParent().requestFocus();
-            });
-        }).start();
+        String leftCity = leftColCity.getText();
+        leftColWeatherUpdate(leftCity);
+        setUpLeftColForecast(leftCity);
     }
 
     @FXML
     void rightColCityAction() {
-        new Thread ( () ->{
-            Platform.runLater( () -> {
-                String cityName = rightColCity.getText();
-                rightColWeatherUpdate(cityName);
-                setUpRightColForecast(cityName);
-                rightColCity.getParent().requestFocus();
-            });
-        }).start();
+        String rightCity = rightColCity.getText();
+        leftColWeatherUpdate(rightCity);
+        setUpLeftColForecast(rightCity);
     }
 
 
@@ -127,11 +142,21 @@ public class MainViewController extends BaseController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setUpIcons();
         draggableMaker.makeWindowDraggable(rootAnchorPane);
         setUpWeatherService();
         setUpWeatherData();
         setUpForecastData();
     }
+
+    private void setUpIcons() {
+        menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
+        exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
+
+        exitButton.setBackground(Background.EMPTY);
+        menuButton.setBackground(Background.EMPTY);
+    }
+
     private void setUpWeatherService(){
         weatherService = WeatherServiceFactory.createWeatherService();
     }
@@ -148,21 +173,31 @@ public class MainViewController extends BaseController implements Initializable{
         rightColWeatherUpdate("Madryt");
     }
     private void leftColWeatherUpdate(String leftColCityName) {
-        Weather weather = weatherService.getWeather(leftColCityName);
 
-        leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-        leftColCity.setText(leftColCityName);
-        leftColWeatherConditions.setText(weather.getConditions());
-        leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
+        new Thread( () ->{
+            Weather weather = weatherService.getWeather(leftColCityName);
+
+            Platform.runLater(() ->{
+                leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
+                leftColCity.setText(leftColCityName);
+                leftColWeatherConditions.setText(weather.getConditions());
+                leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
+            });
+        }).start();
     }
 
     private void rightColWeatherUpdate(String rightColCityName) {
-        Weather weather = weatherService.getWeather(rightColCityName);
 
-        rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-        rightColCity.setText(rightColCityName);
-        rightColWeatherConditions.setText(weather.getConditions());
-        rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
+        new Thread ( () -> {
+            Weather weather = weatherService.getWeather(rightColCityName);
+
+            Platform.runLater( () -> {
+                rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
+                rightColCity.setText(rightColCityName);
+                rightColWeatherConditions.setText(weather.getConditions());
+                rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
+            });
+        }).start();
     }
 
     private void setUpForecastData() {
@@ -172,7 +207,11 @@ public class MainViewController extends BaseController implements Initializable{
     }
 
     private void setUpLeftColForecast(String leftColCityName){
-        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
+
+        new Thread( () -> {
+            ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
+            leftColForecastTableView.setItems(forecast);
+        }).start();
 
         leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
         leftColForecastTemp.setCellValueFactory(data -> {
@@ -196,12 +235,14 @@ public class MainViewController extends BaseController implements Initializable{
             return cell;
         });
         leftColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
-
-        leftColForecastTableView.setItems(forecast);
     }
 
     private void setUpRightColForecast(String rightColCityName){
-        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
+
+        new Thread( () -> {
+            ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
+            rightColForecastTableView.setItems(forecast);
+        }).start();
 
         rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
         rightColForecastTemp.setCellValueFactory(data -> {
@@ -226,14 +267,13 @@ public class MainViewController extends BaseController implements Initializable{
         });
         rightColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
 
-        rightColForecastTableView.setItems(forecast);
+
     }
     private String convertToDegreeAndCelsiusFormat(int temperatureInt){
         return temperatureInt + "\u00B0 C";
     }
 
     private void setupLoseFocusWhenClickedOutside(){
-        System.out.println(rootAnchorPane.getScene());
         rootAnchorPane.getScene().setOnMousePressed(event -> {
             if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())){
                 rootAnchorPane.requestFocus();

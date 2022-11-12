@@ -2,7 +2,6 @@ package org.openjfx;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.openjfx.controller.MainViewController;
 import org.openjfx.view.ViewFactory;
 
 /**

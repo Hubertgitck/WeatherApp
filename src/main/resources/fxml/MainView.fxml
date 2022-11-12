@@ -5,21 +5,18 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootAnchorPane" prefHeight="550.0" prefWidth="660.0" styleClass="rootAnchorPane" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#c6d2dd" height="35.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="660.0" />
       <Line endX="330.0" endY="500.0" startX="330.0" startY="160.0" stroke="WHITE" strokeWidth="0.75" />
-      <Button defaultButton="true" layoutX="611.0" layoutY="-9.0" mnemonicParsing="false" onAction="#exitButtonAction" scaleShape="false" styleClass="exitButton" text="X">
+      <Button fx:id="exitButton" defaultButton="true" layoutX="640.0" layoutY="5.0" mnemonicParsing="false" onAction="#exitButtonAction" onMouseEntered="#exitOnMouseEntered" onMouseExited="#exitOnMouseExited" scaleShape="false" styleClass="exitButton">
          <font>
-            <Font name="Lato Bold" size="24.0" />
+            <Font name="Lato Bold" size="12.0" />
          </font>
       </Button>
       <Pane layoutX="10.0" layoutY="30.0" styleClass="leftPaneWrapper">
@@ -43,7 +40,7 @@
               </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" text="Prognoza pogody" />
-            <TextField fx:id="leftColCity" alignment="CENTER" onAction="#leftColCityAction" onMouseClicked="#leftColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <TextField fx:id="leftColCity" alignment="CENTER" layoutY="5.0" onAction="#leftColCityAction" onMouseClicked="#leftColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
                   <Font name="Lato Regular" size="36.0" />
                </font>
@@ -73,7 +70,7 @@
                </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" text="Prognoza pogody" />
-            <TextField fx:id="rightColCity" alignment="CENTER" onAction="#rightColCityAction" onMouseClicked="#rightColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
+            <TextField fx:id="rightColCity" alignment="CENTER" layoutY="5.0" onAction="#rightColCityAction" onMouseClicked="#rightColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto">
                <font>
                   <Font name="Microsoft Sans Serif" size="36.0" />
                </font>
@@ -82,13 +79,6 @@
             <Line endX="265.0" endY="70.0" startX="45.0" startY="70.0" stroke="WHITE" strokeWidth="0.75" />
          </children>
       </Pane>
-      <Pane fx:id="loadingPane" layoutX="-2.0" opacity="0.6" prefHeight="550.0" prefWidth="660.0" visible="false">
-         <children>
-            <ImageView fitHeight="154.0" fitWidth="180.0" layoutX="241.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/loading.gif" />
-               </image>
-            </ImageView>
-         </children></Pane>
+      <Button fx:id="menuButton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onMouseEntered="#menuOnMouseEntered" onMouseExited="#menuOnMouseExited" />
    </children>
 </AnchorPane>

@@ -58,7 +58,6 @@ public class OpenWeatherClient implements WeatherClient {
 
     private CityData getCityData(String cityName) {
         String urlString = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + ",&limit=1&appid=" + API_KEY;
-        System.out.println(urlString);
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             URL url = new URL(urlString);

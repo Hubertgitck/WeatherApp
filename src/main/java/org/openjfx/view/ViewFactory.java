@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.openjfx.controller.BaseController;
 import org.openjfx.controller.MainViewController;
+import org.openjfx.controller.OptionsController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class ViewFactory {
 
     public void showMainView(){
         BaseController controller = new MainViewController(this, "/fxml/MainView.fxml");
+        initializeStage(controller);
+    }
+
+    public void showOptions(){
+        BaseController controller = new OptionsController(this,"/fxml/Options.fxml");
         initializeStage(controller);
     }
 
