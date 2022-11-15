@@ -18,13 +18,25 @@ public class ViewFactory {
 
     private final boolean mainWindowInitialized = false;
     private final ArrayList<Stage> activeStages;
-    private final ColorTheme colorTheme = ColorTheme.DEFAULT;
-
-    //TODO
-   // private final FontSize fontSize = FontSize.MEDIUM;
+    private ColorTheme colorTheme = ColorTheme.DEFAULT;
+    private FontSize fontSize = FontSize.MEDIUM;
 
     public ViewFactory() {
         this.activeStages = new ArrayList<>();
+    }
+
+    public ColorTheme getColorTheme() {
+        return colorTheme;
+    }
+    public void setColorTheme(ColorTheme colorTheme) {
+        this.colorTheme = colorTheme;
+    }
+
+    public FontSize getFontSize(){
+        return  fontSize;
+    }
+    public void setFontSize(FontSize fontSize) {
+        this.fontSize = fontSize;
     }
 
     public void showMainView(){
@@ -73,9 +85,8 @@ public class ViewFactory {
         for (Stage stage: activeStages){
             Scene scene = stage.getScene();
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ColorTheme.getCssPath(colorTheme))).toExternalForm());
-            //TODO
-            //scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
         }
     }
 }

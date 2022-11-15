@@ -4,13 +4,11 @@
 }
 
 *{
-    -fx-my-background-color-primary: #4a8aba;
-    -fx-my-background-color-secondary: #93c5ed;
+    -fx-my-background-color-primary: #121212;
+    -fx-my-background-color-secondary: #616161;
     -fx-my-font-color:  #ffffff;
-    -fx-my-default-element-color: #7e9ff2;
-    -fx-my-default-minor-element-color: #5fde3c;
+    -fx-my-default-minor-element-color: #8351db;
 
-    -fx-font-family: 'Roboto';
     -fx-text-fill: -fx-my-font-color;
 }
 
@@ -53,13 +51,8 @@ Slider .thumb{
     -fx-background-color: transparent;
 }
 
-.leftColCity:focused, .rightColCity:focused {
-    -fx-font-size: 36px;
-}
-
 .leftColCity:hover, .rightColCity:hover{
     -fx-cursor: hand;
-    -fx-font-size: 36px;
 }
 
 .table-view *{

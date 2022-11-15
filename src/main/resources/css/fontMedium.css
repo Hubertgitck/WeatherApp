@@ -1,0 +1,11 @@
+*{
+    -fx-font-family: 'Roboto';
+}
+
+.cityTextField{
+    -fx-font-size: 36px;
+}
+
+.optionsSlider > .axis{
+    -fx-tick-label-font-size: 14px;
+}

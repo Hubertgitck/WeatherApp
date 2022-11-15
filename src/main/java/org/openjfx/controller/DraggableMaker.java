@@ -1,5 +1,6 @@
 package org.openjfx.controller;
 
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 
 public class DraggableMaker {
@@ -17,8 +18,11 @@ public class DraggableMaker {
         node.setOnMouseDragged( event ->{
             node.getScene().getWindow().setX(event.getScreenX() - mouseAnchorX);
             node.getScene().getWindow().setY(event.getScreenY() - mouseAnchorY);
-           /* node.setLayoutX(event.getSceneX() - mouseAnchorX);
-            node.setLayoutY(event.getSceneY() - mouseAnchorY);*/
+            node.setCursor(Cursor.CLOSED_HAND);
+        });
+
+        node.setOnMouseReleased( event -> {
+            node.setCursor(Cursor.DEFAULT);
         });
     }
 }

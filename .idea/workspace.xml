@@ -4,22 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Main Window styling">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ImageFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Options.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/exitRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/exitWhite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/menuGreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/menuWhite.png" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Main Window styling next version">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/fontBig.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/fontMedium.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/fontSmall.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/themeDark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/themeLight.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/closeRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/closeWhite.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/DraggableMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/DraggableMaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/fontSizeDefault.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fonts/Roboto-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fonts/RobotoRegular.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Options.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Options.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +35,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -42,7 +46,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Persistance" />
+        <entry key="$PROJECT_DIR$" value="css/fxml" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,20 +62,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hubert/Desktop/Kurs/Java/MojaAplikacjaPogodowa/WeatherApplication/src/main/resources/icons&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/Hubert/Desktop/Kurs/Java/MojaAplikacjaPogodowa/WeatherApplication/src/main/resources/css",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.openjfx.model.client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\css" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -155,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668024502804</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Main Window styling next version">
+      <created>1668249898734</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668249898734</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,6 +207,7 @@
     <MESSAGE value="get all necessary data from api complete" />
     <MESSAGE value="Fixing minor bugs" />
     <MESSAGE value="Main Window styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main Window styling" />
+    <MESSAGE value="Main Window styling next version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main Window styling next version" />
   </component>
 </project>

@@ -25,11 +25,9 @@ import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
-    private final DraggableMaker draggableMaker = new DraggableMaker();
 
     private final static PersistenceCities persistenceCities = new PersistenceCities();
 
-    private final ImageFactory imageFactory = new ImageFactory();
 
     @FXML
     void exitButtonAction() {
@@ -48,10 +46,9 @@ public class MainViewController extends BaseController implements Initializable{
     @FXML
     private Label leftColWeatherConditions;
     @FXML
-    private AnchorPane rootAnchorPane;
+    private AnchorPane mainViewRootAnchorPane;
     @FXML
     private ImageView leftColConditionsIcon;
-
     @FXML
     private TableView<Weather> leftColForecastTableView;
     @FXML
@@ -62,36 +59,26 @@ public class MainViewController extends BaseController implements Initializable{
     private TableColumn<Weather, String> leftColForecastTemp;
     @FXML
     private TableColumn<Weather, String> leftColForecastDay;
-
-
     @FXML
     private TextField rightColCity;
-
     @FXML
     private ImageView rightColConditionsIcon;
     @FXML
     private TableView<Weather> rightColForecastTableView;
     @FXML
     private TableColumn<Weather, String> rightColForecastConditions;
-
     @FXML
     private TableColumn<Weather, Image> rightColForecastConditionsIcon;
-
     @FXML
     private TableColumn<Weather, String> rightColForecastDay;
-
     @FXML
     private TableColumn<Weather, String> rightColForecastTemp;
-
     @FXML
     private Label rightColTemperature;
-
     @FXML
     private Label rightColWeatherConditions;
-
     @FXML
     private Button menuButton;
-
     @FXML
     void menuOnMouseEntered() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_GREEN),30,30));
@@ -101,7 +88,10 @@ public class MainViewController extends BaseController implements Initializable{
     void menuOnMouseExited() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
     }
-
+    @FXML
+    void menuButtonOnAction() {
+        viewFactory.showOptions();
+    }
     @FXML
     void exitOnMouseEntered() {
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_RED),30,30));
@@ -131,8 +121,8 @@ public class MainViewController extends BaseController implements Initializable{
     @FXML
     void rightColCityAction() {
         String rightCity = rightColCity.getText();
-        leftColWeatherUpdate(rightCity);
-        setUpLeftColForecast(rightCity);
+        rightColWeatherUpdate(rightCity);
+        setUpRightColForecast(rightCity);
     }
 
 
@@ -142,19 +132,17 @@ public class MainViewController extends BaseController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setUpIcons();
-        draggableMaker.makeWindowDraggable(rootAnchorPane);
+        setUpButtonIcons();
+        draggableMaker.makeWindowDraggable(mainViewRootAnchorPane);
         setUpWeatherService();
         setUpWeatherData();
         setUpForecastData();
     }
 
-    private void setUpIcons() {
+    private void setUpButtonIcons() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
 
-        exitButton.setBackground(Background.EMPTY);
-        menuButton.setBackground(Background.EMPTY);
     }
 
     private void setUpWeatherService(){
@@ -274,9 +262,9 @@ public class MainViewController extends BaseController implements Initializable{
     }
 
     private void setupLoseFocusWhenClickedOutside(){
-        rootAnchorPane.getScene().setOnMousePressed(event -> {
+        mainViewRootAnchorPane.getScene().setOnMousePressed(event -> {
             if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())){
-                rootAnchorPane.requestFocus();
+                mainViewRootAnchorPane.requestFocus();
             }
         });
     }

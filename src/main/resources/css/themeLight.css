@@ -4,11 +4,10 @@
 }
 
 *{
-    -fx-my-background-color-primary: #4a8aba;
-    -fx-my-background-color-secondary: #93c5ed;
-    -fx-my-font-color:  #ffffff;
-    -fx-my-default-element-color: #7e9ff2;
-    -fx-my-default-minor-element-color: #5fde3c;
+    -fx-my-background-color-primary: #ffefc7;
+    -fx-my-background-color-secondary: #e1fad2;
+    -fx-my-font-color:  #545454;
+    -fx-my-default-minor-element-color: #4265ff;
 
     -fx-font-family: 'Roboto';
     -fx-text-fill: -fx-my-font-color;
@@ -38,6 +37,10 @@ Slider .track:hover{
 }
 Slider .thumb{
     -fx-background-color: -fx-my-default-minor-element-color;
+}
+
+.line {
+    -fx-stroke:-fx-my-font-color;
 }
 
 .mainViewRootAnchorPane{

@@ -1,0 +1,31 @@
+*{
+    -fx-font-family: 'Roboto';
+}
+
+.cityTextField {
+    -fx-font-size: 42px;
+}
+
+.temperatureLabel{
+    -fx-font-size: 40px;
+}
+
+.weatherConditionsLabel{
+    -fx-font-size: 22px;
+}
+
+.forecastLabel {
+    -fx-font-size: 20px;
+}
+
+.forecastTableView .table-cell {
+    -fx-font-size: 16px;
+}
+
+.optionsText, .optionsChoiceBox, .optionsApplyButton, .optionsCancelButton {
+    -fx-font-size: 18px;
+}
+
+.optionsSlider > .axis{
+    -fx-tick-label-font-size: 18px;
+}
