@@ -16,7 +16,7 @@ import java.util.*;
 
 public class OpenWeatherClient implements WeatherClient {
     private final String API_KEY = Config.API_KEY;
-    private record CityData(double latitude, double longitude) {}
+    private record CityData(String cityName, double latitude, double longitude) {}
 
     @Override
     public Weather getWeather(String cityName) {
@@ -33,14 +33,14 @@ public class OpenWeatherClient implements WeatherClient {
                 JsonNode apiResponse = objectMapper.readTree(url);
 
                 String conditions = apiResponse.findValue("description").toString();
-                conditions = replaceQuotes(conditions);
+                conditions = removeQuotes(conditions);
                 conditions = capitalize(conditions);
 
                 Image conditionsIcon = getConditionsIcon(apiResponse.findValue("icon").toString());
                 int tempInCelsius = apiResponse.findValue("temp").asInt();
                 String dateTimeString = String.valueOf(apiResponse.findValue("dt_txt"));
                 String dayOfTheWeek = getDayFromUnixTimestamp(apiResponse.findValue("dt").asLong());
-                return new Weather(cityName, conditions, tempInCelsius, dateTimeString, conditionsIcon, dayOfTheWeek);
+                return new Weather(cityData.cityName , conditions, tempInCelsius, dateTimeString, conditionsIcon, dayOfTheWeek);
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class OpenWeatherClient implements WeatherClient {
     }
 
     private Image getConditionsIcon(String iconId) throws MalformedURLException {
-        iconId = replaceQuotes(iconId);
+        iconId = removeQuotes(iconId);
         String urlString = "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
         return new Image(urlString);
     }
@@ -64,11 +64,13 @@ public class OpenWeatherClient implements WeatherClient {
             JsonNode apiResponse = objectMapper.readTree(url);
 
             if (!apiResponse.isEmpty()){
+                String name = apiResponse.findValue("name").toString();
+                name = removeQuotes(name);
                 double latitude = apiResponse.findValue("lat").asDouble();
                 double longitude = apiResponse.findValue("lon").asDouble();
-                return new CityData(latitude, longitude);
+                return new CityData(name,latitude, longitude);
             } else {
-                return new CityData(0,0);
+                return new CityData("",0,0);
             }
 
         } catch (IOException e) {
@@ -105,7 +107,7 @@ public class OpenWeatherClient implements WeatherClient {
                                  String dateFormatted = e.getDtTXT();
                                  Image conditionsIcon = getConditionsIcon(e.getWeather().get(0).getIcon());
                                  String dayOfTheWeek = getDayFromUnixTimestamp(finalNextDayNoonEpochSeconds);
-                                 Weather weather = new Weather(cityName, description, temp, dateFormatted, conditionsIcon, dayOfTheWeek);
+                                 Weather weather = new Weather(cityData.cityName, description, temp, dateFormatted, conditionsIcon, dayOfTheWeek);
                                  forecast.add(weather);
                              } catch (MalformedURLException ex) {
                                  throw new RuntimeException(ex);
@@ -143,7 +145,7 @@ public class OpenWeatherClient implements WeatherClient {
         return Character.toUpperCase(line.charAt(0)) + line.substring(1);
     }
 
-    private String replaceQuotes(String stringWithQuotes){
+    private String removeQuotes(String stringWithQuotes){
         return stringWithQuotes.replace("\"","");
     }
 

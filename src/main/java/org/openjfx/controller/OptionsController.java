@@ -3,14 +3,10 @@ package org.openjfx.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.openjfx.view.ColorTheme;
@@ -21,7 +17,7 @@ import org.openjfx.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OptionsController extends BaseController implements Initializable {
+public final class OptionsController extends BaseController implements Initializable {
 
     @FXML
     private AnchorPane optionsRootAnchorPane;
@@ -43,13 +39,11 @@ public class OptionsController extends BaseController implements Initializable {
     }
     @FXML
     void cancelButtonOnAction() {
-        Stage stage = (Stage) fontSizePicker.getScene().getWindow();
-        viewFactory.closeStage(stage);
+        closeOptionsWindowAction();
     }
     @FXML
     void exitButtonAction() {
-        Stage stage = (Stage) fontSizePicker.getScene().getWindow();
-        viewFactory.closeStage(stage);
+        closeOptionsWindowAction();
     }
     @FXML
     void exitOnMouseEntered() {
@@ -115,7 +109,7 @@ public class OptionsController extends BaseController implements Initializable {
         fontSizePicker.setSnapToTicks(true);
         fontSizePicker.setShowTickMarks(true);
         fontSizePicker.setShowTickLabels(true);
-        fontSizePicker.setLabelFormatter(new StringConverter<Double>() {
+        fontSizePicker.setLabelFormatter(new StringConverter<>() {
             @Override
             public String toString(Double aDouble) {
                 int i = aDouble.intValue();
@@ -127,9 +121,7 @@ public class OptionsController extends BaseController implements Initializable {
                 return null;
             }
         });
-        fontSizePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
-            fontSizePicker.setValue(newVal.intValue());
-        });
+        fontSizePicker.valueProperty().addListener((obs, oldVal, newVal) -> fontSizePicker.setValue(newVal.intValue()));
     }
 
 
@@ -147,5 +139,11 @@ public class OptionsController extends BaseController implements Initializable {
 
     private void setUpButtonRed(Button button){
         button.setStyle("-fx-border-color: #ff8080; -fx-text-fill: #ff8080; -fx-border-radius: 4;");
+    }
+
+    private void closeOptionsWindowAction(){
+        Stage stage = (Stage) fontSizePicker.getScene().getWindow();
+        viewFactory.closeStage(stage);
+        viewFactory.setOptionsWindowInitialized(false);
     }
 }

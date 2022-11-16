@@ -1,8 +1,5 @@
 package org.openjfx.view;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 public enum IconsEnum {
     MENU_WHITE,
     MENU_GREEN,

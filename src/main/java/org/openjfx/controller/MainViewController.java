@@ -10,24 +10,22 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.openjfx.model.Weather;
 import org.openjfx.model.WeatherService;
 import org.openjfx.model.WeatherServiceFactory;
+import org.openjfx.view.ColorTheme;
+import org.openjfx.view.FontSize;
 import org.openjfx.view.IconsEnum;
-import org.openjfx.view.ImageFactory;
 import org.openjfx.view.ViewFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
-
-    private final static PersistenceCities persistenceCities = new PersistenceCities();
-
 
     @FXML
     void exitButtonAction() {
@@ -114,15 +112,19 @@ public class MainViewController extends BaseController implements Initializable{
     @FXML
     void leftColCityAction() {
         String leftCity = leftColCity.getText();
-        leftColWeatherUpdate(leftCity);
-        setUpLeftColForecast(leftCity);
+        if (!leftCity.isEmpty() && leftCity != null){
+            leftColWeatherUpdate(leftCity);
+            leftColForecastUpdate(leftCity);
+        }
     }
 
     @FXML
     void rightColCityAction() {
         String rightCity = rightColCity.getText();
-        rightColWeatherUpdate(rightCity);
-        setUpRightColForecast(rightCity);
+        if (!rightCity.isEmpty() && rightCity !=null ){
+            rightColWeatherUpdate(rightCity);
+            rightColForecastUpdate(rightCity);
+        }
     }
 
 
@@ -135,9 +137,9 @@ public class MainViewController extends BaseController implements Initializable{
         setUpButtonIcons();
         draggableMaker.makeWindowDraggable(mainViewRootAnchorPane);
         setUpWeatherService();
-        setUpWeatherData();
-        setUpForecastData();
+        setUpInitialData();
     }
+
 
     private void setUpButtonIcons() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
@@ -148,18 +150,33 @@ public class MainViewController extends BaseController implements Initializable{
     private void setUpWeatherService(){
         weatherService = WeatherServiceFactory.createWeatherService();
     }
-    private void setUpWeatherData() {
-/*        List<String> rememberedCitiesList = persistenceCities.loadCitiesFromPersistance();
-        if (rememberedCitiesList.size() == 1){
-            leftColWeatherUpdate(rememberedCitiesList.get(0));
-        } else if(rememberedCitiesList.size() == 2){
-            leftColWeatherUpdate(rememberedCitiesList.get(0));
-            rightColWeatherUpdate(rememberedCitiesList.get(1));
-        }*/
-
-        leftColWeatherUpdate("Kielce");
-        rightColWeatherUpdate("Madryt");
+    private void setUpInitialData() {
+        List<String> persistenceList = Persistence.loadFromPersistence();
+        if (persistenceList.size() !=0){
+            if (persistenceList.size() == 3){
+                String leftCity = persistenceList.get(2);
+                setUpLeftColumnData(leftCity);
+            } else if (persistenceList.size() == 4){
+                String leftCity = persistenceList.get(2);
+                setUpLeftColumnData(leftCity);
+                String rightCity = persistenceList.get(3);
+                setUpRightColumnData(rightCity);
+            }
+            viewFactory.setColorTheme(ColorTheme.valueOf(persistenceList.get(0)));
+            viewFactory.setFontSize(FontSize.valueOf(persistenceList.get(1)));
+        }
     }
+
+    private void setUpLeftColumnData(String cityName){
+        leftColWeatherUpdate(cityName);
+        leftColForecastUpdate(cityName);
+    }
+
+    private void setUpRightColumnData(String cityName){
+        rightColWeatherUpdate(cityName);
+        rightColForecastUpdate(cityName);
+    }
+
     private void leftColWeatherUpdate(String leftColCityName) {
 
         new Thread( () ->{
@@ -167,7 +184,7 @@ public class MainViewController extends BaseController implements Initializable{
 
             Platform.runLater(() ->{
                 leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-                leftColCity.setText(leftColCityName);
+                leftColCity.setText(weather.getCityName());
                 leftColWeatherConditions.setText(weather.getConditions());
                 leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
             });
@@ -181,24 +198,18 @@ public class MainViewController extends BaseController implements Initializable{
 
             Platform.runLater( () -> {
                 rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-                rightColCity.setText(rightColCityName);
+                rightColCity.setText(weather.getCityName());
                 rightColWeatherConditions.setText(weather.getConditions());
                 rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
             });
         }).start();
     }
 
-    private void setUpForecastData() {
-
-        setUpLeftColForecast("Kielce");
-        setUpRightColForecast("Madryt");
-    }
-
-    private void setUpLeftColForecast(String leftColCityName){
+    private void leftColForecastUpdate(String leftColCityName){
 
         new Thread( () -> {
             ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
-            leftColForecastTableView.setItems(forecast);
+            Platform.runLater( () -> leftColForecastTableView.setItems(forecast));
         }).start();
 
         leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
@@ -225,11 +236,11 @@ public class MainViewController extends BaseController implements Initializable{
         leftColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
     }
 
-    private void setUpRightColForecast(String rightColCityName){
+    private void rightColForecastUpdate(String rightColCityName){
 
         new Thread( () -> {
             ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
-            rightColForecastTableView.setItems(forecast);
+            Platform.runLater( () -> rightColForecastTableView.setItems(forecast));
         }).start();
 
         rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
@@ -254,8 +265,6 @@ public class MainViewController extends BaseController implements Initializable{
             return cell;
         });
         rightColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
-
-
     }
     private String convertToDegreeAndCelsiusFormat(int temperatureInt){
         return temperatureInt + "\u00B0 C";
@@ -269,4 +278,20 @@ public class MainViewController extends BaseController implements Initializable{
         });
     }
 
+    public void saveToPersistence(){
+        List<String> persistenceList = new ArrayList<>();
+
+        persistenceList.add(viewFactory.getColorTheme().toString());
+        persistenceList.add(viewFactory.getFontSize().toString());
+
+        if (leftColCity.getText() != null && !leftColCity.getText().isEmpty()){
+            persistenceList.add(leftColCity.getText());
+        }
+
+        if (rightColCity.getText() != null && !rightColCity.getText().isEmpty()){
+            persistenceList.add(rightColCity.getText());
+        }
+
+        Persistence.saveToPersistence(persistenceList);
+    }
 }

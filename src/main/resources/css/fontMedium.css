@@ -6,6 +6,15 @@
     -fx-font-size: 36px;
 }
 
+.cityTextField:hover{
+    -fx-font-size: 30px;
+}
+
+.cityTextField:focused{
+    -fx-font-size: 30px;
+}
+
 .optionsSlider > .axis{
     -fx-tick-label-font-size: 14px;
 }
+

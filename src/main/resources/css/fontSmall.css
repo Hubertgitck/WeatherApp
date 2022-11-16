@@ -6,6 +6,14 @@
     -fx-font-size: 28px;
 }
 
+.cityTextField:hover{
+    -fx-font-size: 22px;
+}
+
+.cityTextField:focused{
+    -fx-font-size: 22px;
+}
+
 .temperatureLabel{
     -fx-font-size: 26px;
 }
@@ -29,3 +37,5 @@
 .optionsSlider > .axis{
     -fx-tick-label-font-size: 11px;
 }
+
+

@@ -13,13 +13,13 @@
 
 <AnchorPane fx:id="mainViewRootAnchorPane" prefHeight="550.0" prefWidth="660.0" styleClass="mainViewRootAnchorPane" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Line endX="330.0" endY="500.0" startX="330.0" startY="160.0" stroke="WHITE" strokeWidth="0.75" styleClass="line" />
-      <Button fx:id="exitButton" defaultButton="true" layoutX="640.0" layoutY="5.0" mnemonicParsing="false" onAction="#exitButtonAction" onMouseEntered="#exitOnMouseEntered" onMouseExited="#exitOnMouseExited" scaleShape="false" styleClass="exitButton">
+      <Line endX="330.0" endY="520.0" startX="330.0" startY="160.0" stroke="WHITE" strokeWidth="0.75" styleClass="line" />
+      <Button fx:id="exitButton" defaultButton="true" layoutX="630.0" layoutY="5.0" mnemonicParsing="false" onAction="#exitButtonAction" onMouseEntered="#exitOnMouseEntered" onMouseExited="#exitOnMouseExited" scaleShape="false" styleClass="exitButton">
          <font>
             <Font name="Lato Bold" size="12.0" />
          </font>
       </Button>
-      <Pane layoutX="10.0" layoutY="30.0" prefHeight="505.0" prefWidth="320.0" styleClass="leftPaneWrapper">
+      <Pane fx:id="leftPaneWrapper" layoutX="10.0" layoutY="30.0" styleClass="leftPaneWrapper">
          <children>
             <Label fx:id="leftColTemperature" alignment="CENTER" layoutX="53.0" layoutY="73.0" prefHeight="100.0" prefWidth="100.0" styleClass="temperatureLabel">
                <font>
@@ -31,13 +31,13 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="leftColForecastTableView" disable="true" layoutY="255.0" prefHeight="250.0" prefWidth="320.0" styleClass="forecastTableView">
-              <columns>
+            <TableView fx:id="leftColForecastTableView" disable="true" layoutY="255.0" prefHeight="250.0" prefWidth="325.0" styleClass="forecastTableView">
+               <columns>
                   <TableColumn fx:id="leftColForecastDay" prefWidth="40.0" text="Day" />
-                <TableColumn fx:id="leftColForecastTemp" prefWidth="55.0" text="Temp" />
-                <TableColumn fx:id="leftColForecastConditions" prefWidth="165.0" text="Conditions" />
-                  <TableColumn fx:id="leftColForecastConditionsIcon" prefWidth="60.0" text="Icon" />
-              </columns>
+                  <TableColumn fx:id="leftColForecastTemp" prefWidth="50.0" text="Temp" />
+                  <TableColumn fx:id="leftColForecastConditions" prefWidth="165.0" text="Conditions" />
+                  <TableColumn fx:id="leftColForecastConditionsIcon" prefWidth="70.0" text="Icon" />
+               </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" styleClass="forecastLabel" text="Prognoza pogody" />
             <TextField fx:id="leftColCity" alignment="CENTER" layoutY="5.0" onAction="#leftColCityAction" onMouseClicked="#leftColCityOnMouseClicked" prefHeight="66.0" prefWidth="310.0" promptText="Miasto" styleClass="cityTextField">
@@ -49,24 +49,24 @@
             <Line endX="265.0" endY="70.0" startX="45.0" startY="70.0" stroke="WHITE" strokeWidth="0.75" styleClass="line" />
          </children>
       </Pane>
-      <Pane layoutX="340.0" layoutY="30.0" prefHeight="505.0" prefWidth="320.0" styleClass="rightPaneWrapper">
+      <Pane fx:id="rightPaneWrapper" layoutX="340.0" layoutY="30.0" styleClass="rightPaneWrapper">
          <children>
             <Label fx:id="rightColTemperature" alignment="CENTER" layoutX="53.0" layoutY="73.0" prefHeight="100.0" prefWidth="100.0" styleClass="temperatureLabel">
                <font>
                   <Font name="Microsoft Sans Serif" size="32.0" />
                </font>
             </Label>
-            <Label fx:id="rightColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutY="162.0" prefHeight="25.0" prefWidth="310.0" styleClass="weatherConditionsLabel" textAlignment="CENTER">
+            <Label fx:id="rightColWeatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutY="163.0" prefHeight="25.0" prefWidth="310.0" styleClass="weatherConditionsLabel" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="rightColForecastTableView" disable="true" layoutY="255.0" prefHeight="250.0" prefWidth="320.0" styleClass="forecastTableView">
+            <TableView fx:id="rightColForecastTableView" disable="true" layoutY="253.0" prefHeight="250.0" prefWidth="325.0" styleClass="forecastTableView">
                <columns>
                   <TableColumn fx:id="rightColForecastDay" prefWidth="40.0" text="Day" />
-                  <TableColumn fx:id="rightColForecastTemp" prefWidth="55.0" text="Temp" />
+                  <TableColumn fx:id="rightColForecastTemp" prefWidth="50.0" text="Temp" />
                   <TableColumn fx:id="rightColForecastConditions" prefWidth="165.0" text="Conditions" />
-                  <TableColumn fx:id="rightColForecastConditionsIcon" prefWidth="60.0" text="Icon" />
+                  <TableColumn fx:id="rightColForecastConditionsIcon" prefWidth="70.0" text="Icon" />
                </columns>
             </TableView>
             <Label alignment="CENTER" layoutX="12.0" layoutY="230.0" styleClass="forecastLabel" text="Prognoza pogody" />

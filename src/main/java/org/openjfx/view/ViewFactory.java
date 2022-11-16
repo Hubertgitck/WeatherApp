@@ -12,12 +12,13 @@ import org.openjfx.controller.OptionsController;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ViewFactory {
 
-    private final boolean mainWindowInitialized = false;
+    private boolean isOptionsWindowInitialized = false;
     private final ArrayList<Stage> activeStages;
+    private MainViewController mainViewController = null;
+
     private ColorTheme colorTheme = ColorTheme.DEFAULT;
     private FontSize fontSize = FontSize.MEDIUM;
 
@@ -39,14 +40,21 @@ public class ViewFactory {
         this.fontSize = fontSize;
     }
 
+    public void setOptionsWindowInitialized(boolean status){
+        this.isOptionsWindowInitialized = status;
+    }
     public void showMainView(){
         BaseController controller = new MainViewController(this, "/fxml/MainView.fxml");
         initializeStage(controller);
+        mainViewController = (MainViewController) controller;
     }
 
     public void showOptions(){
-        BaseController controller = new OptionsController(this,"/fxml/Options.fxml");
-        initializeStage(controller);
+        if (!isOptionsWindowInitialized){
+            BaseController controller = new OptionsController(this,"/fxml/Options.fxml");
+            initializeStage(controller);
+            isOptionsWindowInitialized = true;
+        }
     }
 
     private void initializeStage(BaseController baseController){
@@ -66,12 +74,13 @@ public class ViewFactory {
 
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
-        
+
         stage.setScene(scene);
         stage.show();
 
         //requesting focus on parent scene to disable default focus on text fields
         parent.requestFocus();
+
 
         activeStages.add(stage);
         updateStyles();
@@ -88,5 +97,9 @@ public class ViewFactory {
             scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
             scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
         }
+    }
+
+    public void onMainViewCloseEvent(){
+        mainViewController.saveToPersistence();
     }
 }

@@ -53,13 +53,8 @@ Slider .thumb{
     -fx-background-color: transparent;
 }
 
-.leftColCity:focused, .rightColCity:focused {
-    -fx-font-size: 36px;
-}
-
 .leftColCity:hover, .rightColCity:hover{
     -fx-cursor: hand;
-    -fx-font-size: 36px;
 }
 
 .table-view *{

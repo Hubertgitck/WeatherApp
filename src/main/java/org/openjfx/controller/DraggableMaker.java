@@ -21,8 +21,6 @@ public class DraggableMaker {
             node.setCursor(Cursor.CLOSED_HAND);
         });
 
-        node.setOnMouseReleased( event -> {
-            node.setCursor(Cursor.DEFAULT);
-        });
+        node.setOnMouseReleased( event -> node.setCursor(Cursor.DEFAULT));
     }
 }
