@@ -2,9 +2,9 @@ package org.openjfx.model.client;
 
 import org.openjfx.model.Weather;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface WeatherClient {
     Weather getWeather(String cityName);
-    ArrayList<Weather> getForecast(String cityName);
+    List<Weather> getForecast(String cityName);
 }

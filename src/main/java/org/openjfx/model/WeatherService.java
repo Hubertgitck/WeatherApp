@@ -2,7 +2,7 @@ package org.openjfx.model;
 
 import org.openjfx.model.client.WeatherClient;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherService{
 
@@ -16,7 +16,7 @@ public class WeatherService{
         return weatherClient.getWeather(cityName);
     }
 
-    public ArrayList<Weather> getForecast(String cityName){
+    public List<Weather> getForecast(String cityName){
         return weatherClient.getForecast(cityName);
     }
 

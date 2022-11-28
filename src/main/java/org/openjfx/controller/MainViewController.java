@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,6 +27,9 @@ import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
+
+    private boolean isLeftColCityUpdated = false;
+    private boolean isRightColCityUpdated = false;
 
     @FXML
     void exitButtonAction() {
@@ -116,15 +120,17 @@ public class MainViewController extends BaseController implements Initializable{
             leftColWeatherUpdate(leftCity);
             leftColForecastUpdate(leftCity);
         }
+        isLeftColCityUpdated = true;
     }
 
     @FXML
     void rightColCityAction() {
         String rightCity = rightColCity.getText();
-        if (!rightCity.isEmpty() && rightCity !=null ){
+        if (!rightCity.isEmpty() && rightCity !=null){
             rightColWeatherUpdate(rightCity);
             rightColForecastUpdate(rightCity);
         }
+        isRightColCityUpdated = true;
     }
 
 
@@ -138,6 +144,7 @@ public class MainViewController extends BaseController implements Initializable{
         draggableMaker.makeWindowDraggable(mainViewRootAnchorPane);
         setUpWeatherService();
         setUpInitialData();
+        setUpTextFieldsListener();
     }
 
 
@@ -151,7 +158,7 @@ public class MainViewController extends BaseController implements Initializable{
         weatherService = WeatherServiceFactory.createWeatherService();
     }
     private void setUpInitialData() {
-        List<String> persistenceList = Persistence.loadFromPersistence();
+        List<String> persistenceList = Persistence.loadFromPersistence(Persistence.DEFAULT_CITIES_LOCATION);
         if (persistenceList.size() !=0){
             if (persistenceList.size() == 3){
                 String leftCity = persistenceList.get(2);
@@ -271,11 +278,28 @@ public class MainViewController extends BaseController implements Initializable{
     }
 
     private void setupLoseFocusWhenClickedOutside(){
+
         mainViewRootAnchorPane.getScene().setOnMousePressed(event -> {
-            if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())){
+            if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())) {
                 mainViewRootAnchorPane.requestFocus();
+                if (!isLeftColCityUpdated){
+                    leftColCity.fireEvent(new ActionEvent());
+                }
+                if (!isRightColCityUpdated){
+                    rightColCity.fireEvent(new ActionEvent());
+                }
             }
         });
+    }
+
+    private void setUpTextFieldsListener(){
+        leftColCity.textProperty().addListener( ((observableValue, s, t1) -> {
+            isLeftColCityUpdated = false;
+        }));
+
+        rightColCity.textProperty().addListener(((observableValue, s, t1) -> {
+            isRightColCityUpdated = false;
+        }));
     }
 
     public void saveToPersistence(){

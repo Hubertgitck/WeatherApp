@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="WeatherApplication:jar2" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="fxml bug fixes, preparation of persistance">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WeatherApplication_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WeatherApplication_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/DraggableMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/DraggableMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/PersistenceCities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/fontBig.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/fontBig.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/fontMedium.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/fontMedium.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/fontSmall.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/fontSmall.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +37,7 @@
         <option value="Enum" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Fixing_bugs_after_deployement" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,11 +68,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hubert/Desktop/Kurs/Java/MojaAplikacjaPogodowa/WeatherApplication/src/main/resources/css&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hubert/Desktop/Kurs/Java/MojaAplikacjaPogodowa/WeatherApplication/src/test/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -74,19 +82,125 @@
       <recent name="org.openjfx.model.client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\test\resources" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\css" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\test\resources" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\icons" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources\fonts" />
       <recent name="C:\Users\Hubert\Desktop\Kurs\Java\MojaAplikacjaPogodowa\WeatherApplication\src\main\resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.openjfx.controller" />
+      <recent name="org.openjfx.view" />
+      <recent name="org.openjfx.model" />
+      <recent name="org.openjfx.model.client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.openjfx.view" />
     </key>
   </component>
+  <component name="RunManager" selected="JUnit.WeatherServiceTest.shouldReturnWeatherObject">
+    <configuration name="ColorThemeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.view" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.view.ColorThemeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistenceTest.shouldReturnPersistenceDataFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
+      <option name="METHOD_NAME" value="shouldReturnPersistenceDataFromFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistenceTest.shouldReturnPersistenceDataFromFileIfItExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
+      <option name="METHOD_NAME" value="shouldReturnPersistenceDataFromFileIfItExists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.model" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeatherServiceTest.shouldReturnWeatherObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.model" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
+      <option name="METHOD_NAME" value="shouldReturnWeatherObject" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.WeatherServiceTest.shouldReturnWeatherObject" />
+        <item itemvalue="JUnit.WeatherServiceTest" />
+        <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFile" />
+        <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFileIfItExists" />
+        <item itemvalue="JUnit.ColorThemeTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="/* $CommentContent$ */" created="1668623923855" uuid="db4b32bb-b2a1-36a8-a896-0d91c20dad28" text="/* $CommentContent$ */" recursive="true" caseInsensitive="false" type="JAVA" pattern_context="default" scope_type="PROJECT" scope_descriptor="" history="1">
+      <constraint name="__context__" within="" contains="" />
+      <constraint name="CommentContent" within="" contains="" />
+    </searchConfiguration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="" />
@@ -165,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668249898734</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Persistence done, fixed minor bugs.">
+      <created>1668623653877</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668623653877</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -17,7 +17,6 @@ public enum IconsEnum {
             case EXIT_RED -> "/icons/exitRed.png";
             case CLOSE_WHITE ->"/icons/closeWhite.png";
             case CLOSE_RED -> "/icons/closeRed.png";
-            default -> null;
         };
     }
 }
