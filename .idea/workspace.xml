@@ -10,7 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Added Unit_tests">
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/client/WeatherClientTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,21 +95,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.WeatherServiceTest.shouldReturnWeatherObject">
-    <configuration name="ColorThemeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="WeatherApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.openjfx.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.view" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.view.ColorThemeTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PersistenceTest.shouldReturnPersistenceDataFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
@@ -155,6 +142,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WeatherServiceTest.shouldReturnForecastList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WeatherApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.openjfx.model" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
+      <option name="METHOD_NAME" value="shouldReturnForecastList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WeatherServiceTest.shouldReturnWeatherObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
@@ -174,10 +177,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.WeatherServiceTest.shouldReturnWeatherObject" />
+        <item itemvalue="JUnit.WeatherServiceTest.shouldReturnForecastList" />
         <item itemvalue="JUnit.WeatherServiceTest" />
         <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFile" />
         <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFileIfItExists" />
-        <item itemvalue="JUnit.ColorThemeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669654808567</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Unit_tests">
+      <created>1669655045220</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669655045220</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
