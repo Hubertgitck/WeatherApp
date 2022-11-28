@@ -9,21 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="fxml bug fixes, preparation of persistance">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WeatherApplication_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WeatherApplication_jar2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/WeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/IconsEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Added Unit_tests">
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +273,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668623653877</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added Unit_tests">
+      <created>1669654687125</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669654687125</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added Unit_tests">
+      <created>1669654808567</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669654808567</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,6 +326,7 @@
     <MESSAGE value="Main Window styling" />
     <MESSAGE value="Main Window styling next version" />
     <MESSAGE value="fxml bug fixes, preparation of persistance" />
-    <option name="LAST_COMMIT_MESSAGE" value="fxml bug fixes, preparation of persistance" />
+    <MESSAGE value="Added Unit_tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Unit_tests" />
   </component>
 </project>
