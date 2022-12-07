@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Added Unit_tests">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="pom xml removing unnecessary dependencies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/client/WeatherClientTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Fixing_bugs_after_deployement" />
+        <entry key="$PROJECT_DIR$" value="Unit_tests" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,35 +93,24 @@
       <recent name="org.openjfx.view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WeatherServiceTest.shouldReturnWeatherObject">
-    <configuration name="PersistenceTest.shouldReturnPersistenceDataFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in WeatherApp">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.Launcher" />
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.controller.*" />
+          <option name="PATTERN" value="org.openjfx.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
-      <option name="METHOD_NAME" value="shouldReturnPersistenceDataFromFile" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PersistenceTest.shouldReturnPersistenceDataFromFileIfItExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in WeatherApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.openjfx.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
-      <option name="METHOD_NAME" value="shouldReturnPersistenceDataFromFileIfItExists" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in WeatherApp" />
+        <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.WeatherServiceTest.shouldReturnWeatherObject" />
         <item itemvalue="JUnit.WeatherServiceTest.shouldReturnForecastList" />
         <item itemvalue="JUnit.WeatherServiceTest" />
-        <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFile" />
-        <item itemvalue="JUnit.PersistenceTest.shouldReturnPersistenceDataFromFileIfItExists" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669655045220</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Weather services fixing tests">
+      <created>1669657047856</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669657047856</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,6 +332,8 @@
     <MESSAGE value="Main Window styling next version" />
     <MESSAGE value="fxml bug fixes, preparation of persistance" />
     <MESSAGE value="Added Unit_tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Unit_tests" />
+    <MESSAGE value="Weather services fixing tests" />
+    <MESSAGE value="pom xml removing unnecessary dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="pom xml removing unnecessary dependencies" />
   </component>
 </project>
