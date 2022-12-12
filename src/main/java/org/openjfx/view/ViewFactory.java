@@ -44,9 +44,9 @@ public class ViewFactory {
         this.isOptionsWindowInitialized = status;
     }
     public void showMainView(){
-        BaseController controller = new MainViewController(this, "/fxml/MainView.fxml");
+        MainViewController controller = new MainViewController(this, "/fxml/MainView.fxml");
         initializeStage(controller);
-        mainViewController = (MainViewController) controller;
+        mainViewController = controller;
     }
 
     public void showOptions(){

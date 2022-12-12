@@ -2,21 +2,33 @@ package org.openjfx.model.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 import org.openjfx.Config;
+import org.openjfx.model.HttpClientService;
+import org.openjfx.model.HttpClientServiceFactory;
 import org.openjfx.model.Weather;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OpenWeatherClient implements WeatherClient {
+
+    private static final int NUMBER_OF_DAYS_IN_FORECAST = 5;
     private final String API_KEY = Config.API_KEY;
+    private final ObjectMapper objectMapper;
+    private final HttpClientService httpClient;
+
     private record CityData(String cityName, double latitude, double longitude) {}
+
+    public OpenWeatherClient() {
+        this.objectMapper = new ObjectMapper();
+        this.httpClient = HttpClientServiceFactory.createHttpClientService();
+    }
 
     @Override
     public Weather getWeather(String cityName) {
@@ -29,116 +41,85 @@ public class OpenWeatherClient implements WeatherClient {
         } else {
             weather = new Weather("Nieznane miasto", "Wprowadź prawidłową nazwę miasta",0,"0",null,"0");
         }
-
         return weather;
     }
     @Override
     public List<Weather> getForecast(String cityName){
 
         List<Weather> forecast = new ArrayList<>();
-
         CityData cityData = getCityData(cityName);
-        System.out.println(cityData);
 
          if (isCityDataCorrect(cityData)) {
              forecast = getForecastData(cityData);
          } else {
-             Weather weather = new Weather("błąd", "błąd", 0, "błąd", null, "0");
+             Weather weather = new Weather("błąd", "nieznane miasto", 0, "błąd", null, "0");
              forecast.add(weather);
          }
-
          return forecast;
-    }
-
-
-    private Image getConditionsIcon(String iconId) throws MalformedURLException {
-
-        iconId = removeQuotes(iconId);
-        String urlString = "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
-
-        return new Image(urlString);
     }
 
     private CityData getCityData(String cityName) {
 
         String urlString = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + ",&limit=1&appid=" + API_KEY;
-        ObjectMapper objectMapper = new ObjectMapper();
-        URL url = null;
-        JsonNode apiResponse;
+        CityDataPOJO cityDataPOJO;
+        CityData cityData;
+        String responseJsonAsString;
 
-        try {
-            url = new URL(urlString);
-            apiResponse = objectMapper.readTree(url);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
+        responseJsonAsString = trimWrappingSquareBracketsFromResponse(responseJsonAsString);
 
-        if (!apiResponse.isEmpty()){
-            String name = apiResponse.findValue("name").toString();
-            name = removeQuotes(name);
-            double latitude = apiResponse.findValue("lat").asDouble();
-            double longitude = apiResponse.findValue("lon").asDouble();
-            return new CityData(name,latitude, longitude);
+        if (responseJsonAsString.length() > 0){
+            try {
+                cityDataPOJO = objectMapper.readValue(responseJsonAsString, CityDataPOJO.class);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("Failed to parse response JSON", e);
+            }
+
+            cityData = new CityData(removeQuotes(cityDataPOJO.getLocalNames().get("pl").toString()),
+                    cityDataPOJO.getLat(),
+                    cityDataPOJO.getLon()
+                    );
         } else {
-            return new CityData("",0,0);
+            cityData = new CityData("Nie znaleziono miasta",0,0);
         }
-
-    }
-
-    private boolean isCityDataCorrect(CityData cityData) {
-        return cityData.longitude != 0 && cityData.latitude != 0;
+        return cityData;
     }
 
     private Weather getWeatherData (CityData cityData) {
 
         String urlString = "https://api.openweathermap.org/data/2.5/weather?lat=" + cityData.latitude() + "&lon=" +
                 cityData.longitude() + "&lang=pl&appid=" + API_KEY +"&units=metric";
-        ObjectMapper objectMapper = new ObjectMapper();
-        URL url = null;
-        JsonNode apiResponse = null;
+        String responseJsonAsString;
 
+        responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
+
+        WeatherPOJO weatherPOJO;
         try {
-            url = new URL(urlString);
-            apiResponse = objectMapper.readTree(url);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            weatherPOJO = objectMapper.readValue(responseJsonAsString, WeatherPOJO.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to parse response JSON", e);
         }
 
-        String conditions = apiResponse.findValue("description").toString();
-        conditions = removeQuotes(conditions);
-        conditions = capitalize(conditions);
-
-        Image conditionsIcon = null;
-        try {
-            conditionsIcon = getConditionsIcon(apiResponse.findValue("icon").toString());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        int tempInCelsius = apiResponse.findValue("temp").asInt();
-            String dateTimeString = String.valueOf(apiResponse.findValue("dt_txt"));
-            String dayOfTheWeek = getDayFromUnixTimestamp(apiResponse.findValue("dt").asLong());
-            return new Weather(cityData.cityName , conditions, tempInCelsius, dateTimeString, conditionsIcon, dayOfTheWeek);
-
+        return new Weather(cityData.cityName,
+                capitalize(weatherPOJO.getConditionsDescription()),
+                weatherPOJO.main.getTemperature(),
+                weatherPOJO.getDateAsText(),
+                getConditionsIcon(weatherPOJO.getWeather().get(0).getIcon()),
+                getDayFromUnixTimestamp(weatherPOJO.getDateAsEpochSeconds())
+        );
     }
 
     private List<Weather> getForecastData (CityData cityData) {
 
         List<Weather> forecast = new ArrayList<>();
+        ForecastResponse response;
         String urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityData.latitude() + "&lon=" +
                 cityData.longitude() + "&lang=pl&appid=" + API_KEY + "&units=metric";
 
-        URL url = null;
-        ObjectMapper objectMapper = new ObjectMapper();
-        Response response;
+        String responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
 
         try {
-            url = new URL(urlString);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            response = objectMapper.readValue(url, Response.class);
+            response = objectMapper.readValue(responseJsonAsString, ForecastResponse.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -149,22 +130,19 @@ public class OpenWeatherClient implements WeatherClient {
         LocalDateTime todayNoon = LocalDateTime.of(today, noon);
         long nextDayNoonEpochSeconds = todayNoon.plusDays(1).toEpochSecond(ZoneOffset.UTC);
 
-        //Get forecast for next 5 days
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i <= NUMBER_OF_DAYS_IN_FORECAST; i++) {
             long finalNextDayNoonEpochSeconds = nextDayNoonEpochSeconds;
-            response.getList().forEach(e -> {
-                if (e.getDt() == finalNextDayNoonEpochSeconds) {
-                    try {
-                        String description = e.getWeather().get(0).getDescription();
-                        int temp = e.getMain().get("temp").asInt();
-                        String dateFormatted = e.getDtTXT();
-                        Image conditionsIcon = getConditionsIcon(e.getWeather().get(0).getIcon());
-                        String dayOfTheWeek = getDayFromUnixTimestamp(finalNextDayNoonEpochSeconds);
-                        Weather weather = new Weather(cityData.cityName, description, temp, dateFormatted, conditionsIcon, dayOfTheWeek);
-                        forecast.add(weather);
-                    } catch (MalformedURLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+            response.getList().forEach(element -> {
+                Weather weather;
+                if (element.getDateAsEpochSeconds() == finalNextDayNoonEpochSeconds) {
+                    weather = new Weather(cityData.cityName,
+                            element.getConditionsDescription(),
+                            element.main.getTemperature(),
+                            element.getDateAsText(),
+                            getConditionsIcon(element.getWeather().get(0).getIcon()),
+                            getDayFromUnixTimestamp(element.getDateAsEpochSeconds())
+                    );
+                    forecast.add(weather);
                 }
             });
             nextDayNoonEpochSeconds = nextDayNoonEpochSeconds + 86400;
@@ -172,17 +150,30 @@ public class OpenWeatherClient implements WeatherClient {
         return forecast;
     }
 
+    private Image getConditionsIcon(String iconId){
+
+        iconId = removeQuotes(iconId);
+        String urlString = "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
+
+        return new Image(urlString);
+    }
+
+    private boolean isCityDataCorrect(CityData cityData) {
+        return cityData.longitude != 0 && cityData.latitude != 0;
+    }
+
     private String getDayFromUnixTimestamp(long epochSeconds){
-        int dayOfTheWeek = (int) (((epochSeconds / 86400) + 4) %7);
+
+        DayOfWeek dayOfTheWeek = LocalDateTime.ofInstant(Instant.ofEpochSecond(epochSeconds), ZoneId.systemDefault()).getDayOfWeek();
+
         return switch (dayOfTheWeek){
-            case 0 -> "Niedz";
-            case 1 -> "Pon";
-            case 2 -> "Wt";
-            case 3 -> "Śr";
-            case 4 -> "Czw";
-            case 5 -> "Pt";
-            case 6 -> "Sob";
-            default -> throw new IllegalStateException("Unexpected value: " + dayOfTheWeek);
+            case SUNDAY -> "Niedz";
+            case MONDAY -> "Pon";
+            case TUESDAY -> "Wt";
+            case WEDNESDAY -> "Śr";
+            case THURSDAY -> "Czw";
+            case FRIDAY -> "Pt";
+            case SATURDAY -> "Sob";
         };
     }
     private String capitalize(String line) {
@@ -193,9 +184,35 @@ public class OpenWeatherClient implements WeatherClient {
         return stringWithQuotes.replace("\"","");
     }
 
+    private String trimWrappingSquareBracketsFromResponse (String stringToTrim){
+        return stringToTrim.substring(1, stringToTrim.length() - 1);
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     static
-    class Response {
+    class CityDataPOJO {
+        public double lat;
+
+        public double lon;
+
+        @JsonProperty("local_names")
+        JsonNode localNames;
+
+        public double getLat() {
+            return lat;
+        }
+
+        public double getLon() {
+            return lon;
+        }
+
+        public JsonNode getLocalNames() {
+            return localNames;
+        }
+    }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static
+    class ForecastResponse {
         List<WeatherPOJO> list;
 
         public List<WeatherPOJO> getList() {
@@ -206,31 +223,36 @@ public class OpenWeatherClient implements WeatherClient {
     @JsonIgnoreProperties(ignoreUnknown = true)
     static
     class WeatherPOJO {
-        JsonNode main;
-        List<WeatherApiData> weather;
-        long dt;
+        Main main;
+        List<WeatherData> weather;
+        public long dt;
         @JsonProperty("dt_txt")
         String dtTXT;
 
-        public JsonNode getMain() {
-            return main;
-        }
-        public long getDt(){
+        public long getDateAsEpochSeconds(){
             return dt;
         }
 
-        public String getDtTXT() {
+        public String getDateAsText() {
             return dtTXT;
         }
 
-        public List<WeatherApiData> getWeather() {
+        public List<WeatherData> getWeather() {
             return weather;
+        }
+
+        public String getConditionsDescription(){
+            return weather.get(0).getDescription();
+        }
+
+        public Main getMain() {
+            return main;
         }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     static
-    class WeatherApiData{
+    class WeatherData {
         String description;
         String icon;
 
@@ -240,6 +262,16 @@ public class OpenWeatherClient implements WeatherClient {
 
         public String getIcon() {
             return icon;
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static
+    class Main {
+        public double temp;
+
+        public int getTemperature() {
+            return (int) temp;
         }
     }
 }

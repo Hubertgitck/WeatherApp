@@ -12,11 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import org.openjfx.controller.Persistence.Persistence;
+import org.openjfx.controller.Persistence.PersistenceState;
 import org.openjfx.model.Weather;
 import org.openjfx.model.WeatherService;
 import org.openjfx.model.WeatherServiceFactory;
-import org.openjfx.view.ColorTheme;
-import org.openjfx.view.FontSize;
 import org.openjfx.view.IconsEnum;
 import org.openjfx.view.ViewFactory;
 
@@ -151,26 +151,23 @@ public class MainViewController extends BaseController implements Initializable{
     private void setUpButtonIcons() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
-
     }
 
     private void setUpWeatherService(){
         weatherService = WeatherServiceFactory.createWeatherService();
     }
     private void setUpInitialData() {
-        List<String> persistenceList = Persistence.loadFromPersistence(Persistence.DEFAULT_CITIES_LOCATION);
-        if (persistenceList.size() !=0){
-            if (persistenceList.size() == 3){
-                String leftCity = persistenceList.get(2);
-                setUpLeftColumnData(leftCity);
-            } else if (persistenceList.size() == 4){
-                String leftCity = persistenceList.get(2);
-                setUpLeftColumnData(leftCity);
-                String rightCity = persistenceList.get(3);
-                setUpRightColumnData(rightCity);
-            }
-            viewFactory.setColorTheme(ColorTheme.valueOf(persistenceList.get(0)));
-            viewFactory.setFontSize(FontSize.valueOf(persistenceList.get(1)));
+
+        PersistenceState persistenceState = Persistence.getPersistenceState();
+
+        viewFactory.setColorTheme(persistenceState.getColorTheme());
+        viewFactory.setFontSize(persistenceState.getFontSize());
+
+        if (persistenceState.getNumberOfCitiesSavedToPersistence() == 1){
+            setUpLeftColumnData(persistenceState.getLeftCity());
+        } else if (persistenceState.getNumberOfCitiesSavedToPersistence() == 2) {
+            setUpLeftColumnData(persistenceState.getLeftCity());
+            setUpRightColumnData(persistenceState.getRightCity());
         }
     }
 
@@ -186,38 +183,30 @@ public class MainViewController extends BaseController implements Initializable{
 
     private void leftColWeatherUpdate(String leftColCityName) {
 
-        new Thread( () ->{
-            Weather weather = weatherService.getWeather(leftColCityName);
-
             Platform.runLater(() ->{
+                Weather weather = weatherService.getWeather(leftColCityName);
                 leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
                 leftColCity.setText(weather.getCityName());
                 leftColWeatherConditions.setText(weather.getConditions());
                 leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
             });
-        }).start();
     }
 
     private void rightColWeatherUpdate(String rightColCityName) {
 
-        new Thread ( () -> {
-            Weather weather = weatherService.getWeather(rightColCityName);
-
             Platform.runLater( () -> {
+                Weather weather = weatherService.getWeather(rightColCityName);
                 rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
                 rightColCity.setText(weather.getCityName());
                 rightColWeatherConditions.setText(weather.getConditions());
                 rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
             });
-        }).start();
     }
 
     private void leftColForecastUpdate(String leftColCityName){
 
-        new Thread( () -> {
-            ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
-            Platform.runLater( () -> leftColForecastTableView.setItems(forecast));
-        }).start();
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
+        Platform.runLater( () -> leftColForecastTableView.setItems(forecast));
 
         leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
         leftColForecastTemp.setCellValueFactory(data -> {
@@ -245,10 +234,8 @@ public class MainViewController extends BaseController implements Initializable{
 
     private void rightColForecastUpdate(String rightColCityName){
 
-        new Thread( () -> {
-            ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
-            Platform.runLater( () -> rightColForecastTableView.setItems(forecast));
-        }).start();
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
+        Platform.runLater( () -> rightColForecastTableView.setItems(forecast));
 
         rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
         rightColForecastTemp.setCellValueFactory(data -> {

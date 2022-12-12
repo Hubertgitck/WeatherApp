@@ -9,23 +9,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="pom xml removing unnecessary dependencies">
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="more pom.xml refactoring">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/PersistenceState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientServiceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/iHttpClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/Persistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,7 +80,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -90,10 +108,11 @@
       <recent name="org.openjfx.model.client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.openjfx.model" />
       <recent name="org.openjfx.view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in WeatherApp">
+  <component name="RunManager" selected="Application.Launcher">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.openjfx.Launcher" />
       <module name="WeatherApp" />
@@ -119,7 +138,7 @@
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,7 +153,7 @@
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -150,7 +169,7 @@
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.*" />
+          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,8 +183,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in WeatherApp" />
         <item itemvalue="Application.Launcher" />
+        <item itemvalue="JUnit.All in WeatherApp" />
         <item itemvalue="JUnit.WeatherServiceTest.shouldReturnWeatherObject" />
         <item itemvalue="JUnit.WeatherServiceTest.shouldReturnForecastList" />
         <item itemvalue="JUnit.WeatherServiceTest" />
@@ -292,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669657047856</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="more pom.xml refactoring">
+      <created>1670432088567</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1670432088567</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,6 +360,7 @@
     <MESSAGE value="Added Unit_tests" />
     <MESSAGE value="Weather services fixing tests" />
     <MESSAGE value="pom xml removing unnecessary dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="pom xml removing unnecessary dependencies" />
+    <MESSAGE value="more pom.xml refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="more pom.xml refactoring" />
   </component>
 </project>
