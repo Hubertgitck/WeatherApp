@@ -56,11 +56,15 @@ Slider .thumb{
     -fx-background-color: transparent;
 }
 
-.leftColCity:focused, .rightColCity:focused {
+.cityTextField:focused {
     -fx-font-size: 36px;
 }
 
-.leftColCity:hover, .rightColCity:hover{
+.cityTextField{
+    -fx-background-color: transparent;
+}
+
+.cityTextField:hover{
     -fx-cursor: hand;
     -fx-font-size: 36px;
 }

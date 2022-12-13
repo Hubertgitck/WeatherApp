@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="430.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="wrappingPane" layoutY="7.0" styleClass="leftPaneWrapper">
+         <children>
+            <Label fx:id="temperature" alignment="CENTER" layoutX="60.0" layoutY="5.0" prefHeight="100.0" prefWidth="100.0" styleClass="temperatureLabel">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="weatherConditions" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="100.0" prefHeight="25.0" prefWidth="310.0" styleClass="weatherConditionsLabel" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TableView fx:id="forecastTableView" disable="true" layoutY="180.0" prefHeight="250.0" prefWidth="325.0" styleClass="forecastTableView">
+               <columns>
+                  <TableColumn fx:id="forecastDayCol" prefWidth="40.0" text="Day" />
+                  <TableColumn fx:id="forecastTemperatureCol" prefWidth="50.0" text="Temp" />
+                  <TableColumn fx:id="forecastConditionsCol" prefWidth="165.0" text="Conditions" />
+                  <TableColumn fx:id="forecastConditionsIconCol" prefWidth="70.0" text="Icon" />
+               </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="13.0" layoutY="158.0" styleClass="forecastLabel" text="Prognoza pogody" />
+            <ImageView fx:id="conditionsIcon" fitHeight="100.0" fitWidth="100.0" layoutX="155.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+            <Line endX="265.0" endY="70.0" layoutX="2.0" layoutY="-70.0" startX="45.0" startY="70.0" stroke="WHITE" strokeWidth="0.75" styleClass="line" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

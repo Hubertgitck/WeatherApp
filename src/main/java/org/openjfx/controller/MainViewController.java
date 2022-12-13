@@ -1,17 +1,15 @@
 package org.openjfx.controller;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.Pane;
 import org.openjfx.controller.Persistence.Persistence;
 import org.openjfx.controller.Persistence.PersistenceState;
 import org.openjfx.model.Weather;
@@ -31,56 +29,25 @@ public class MainViewController extends BaseController implements Initializable{
     private boolean isLeftColCityUpdated = false;
     private boolean isRightColCityUpdated = false;
 
+
+    @FXML
+    private AnchorPane mainViewRootAnchorPane;
+    @FXML
+    private Pane leftPaneWrapper;
+    @FXML
+    private Pane rightPaneWrapper;
+    @FXML
+    private TextField leftColCity;
+    @FXML
+    private TextField rightColCity;
+    @FXML
+    private Button menuButton;
+    @FXML
+    private Button exitButton;
     @FXML
     void exitButtonAction() {
         Platform.exit();
     }
-    @FXML
-    private Button exitButton;
-    @FXML
-    private TextField leftColCity;
-    @FXML
-    private TextField leftColCountry;
-    @FXML
-    private Text leftColDegreeSymbol;
-    @FXML
-    private Label leftColTemperature;
-    @FXML
-    private Label leftColWeatherConditions;
-    @FXML
-    private AnchorPane mainViewRootAnchorPane;
-    @FXML
-    private ImageView leftColConditionsIcon;
-    @FXML
-    private TableView<Weather> leftColForecastTableView;
-    @FXML
-    private TableColumn<Weather, Image> leftColForecastConditionsIcon;
-    @FXML
-    private TableColumn<Weather, String> leftColForecastConditions;
-    @FXML
-    private TableColumn<Weather, String> leftColForecastTemp;
-    @FXML
-    private TableColumn<Weather, String> leftColForecastDay;
-    @FXML
-    private TextField rightColCity;
-    @FXML
-    private ImageView rightColConditionsIcon;
-    @FXML
-    private TableView<Weather> rightColForecastTableView;
-    @FXML
-    private TableColumn<Weather, String> rightColForecastConditions;
-    @FXML
-    private TableColumn<Weather, Image> rightColForecastConditionsIcon;
-    @FXML
-    private TableColumn<Weather, String> rightColForecastDay;
-    @FXML
-    private TableColumn<Weather, String> rightColForecastTemp;
-    @FXML
-    private Label rightColTemperature;
-    @FXML
-    private Label rightColWeatherConditions;
-    @FXML
-    private Button menuButton;
     @FXML
     void menuOnMouseEntered() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_GREEN),30,30));
@@ -102,12 +69,10 @@ public class MainViewController extends BaseController implements Initializable{
     void exitOnMouseExited() {
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
     }
-
     @FXML
     void leftColCityOnMouseClicked() {
         setupLoseFocusWhenClickedOutside();
     }
-
     @FXML
     void rightColCityOnMouseClicked() {
         setupLoseFocusWhenClickedOutside();
@@ -116,19 +81,18 @@ public class MainViewController extends BaseController implements Initializable{
     @FXML
     void leftColCityAction() {
         String leftCity = leftColCity.getText();
-        if (!leftCity.isEmpty() && leftCity != null){
-            leftColWeatherUpdate(leftCity);
-            leftColForecastUpdate(leftCity);
+        if (!leftCity.isEmpty()){
+            setUpLeftColumnData(leftCity);
         }
         isLeftColCityUpdated = true;
     }
 
     @FXML
-    void rightColCityAction() {
+    void rightColCityAction(){
         String rightCity = rightColCity.getText();
-        if (!rightCity.isEmpty() && rightCity !=null){
-            rightColWeatherUpdate(rightCity);
-            rightColForecastUpdate(rightCity);
+
+        if (!rightCity.isEmpty()){
+            setUpRightColumnData(rightCity);
         }
         isRightColCityUpdated = true;
     }
@@ -147,7 +111,6 @@ public class MainViewController extends BaseController implements Initializable{
         setUpTextFieldsListener();
     }
 
-
     private void setUpButtonIcons() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.EXIT_WHITE),30,30));
@@ -163,116 +126,44 @@ public class MainViewController extends BaseController implements Initializable{
         viewFactory.setColorTheme(persistenceState.getColorTheme());
         viewFactory.setFontSize(persistenceState.getFontSize());
 
-        if (persistenceState.getNumberOfCitiesSavedToPersistence() == 1){
-            setUpLeftColumnData(persistenceState.getLeftCity());
-        } else if (persistenceState.getNumberOfCitiesSavedToPersistence() == 2) {
-            setUpLeftColumnData(persistenceState.getLeftCity());
-            setUpRightColumnData(persistenceState.getRightCity());
+        if (persistenceState.getNumberOfCitiesSavedToPersistence() > 0){
+            leftColCity.textProperty().set(persistenceState.getLeftCity());
+            setUpLeftColumnData(leftColCity.getText());
+        }
+        if (persistenceState.getNumberOfCitiesSavedToPersistence() > 1) {
+            rightColCity.textProperty().set(persistenceState.getRightCity());
+            setUpRightColumnData(rightColCity.getText());
         }
     }
 
     private void setUpLeftColumnData(String cityName){
-        leftColWeatherUpdate(cityName);
-        leftColForecastUpdate(cityName);
+        Weather weather = weatherService.getWeather(cityName);
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(cityName));
+
+        leftPaneWrapper.getChildren().clear();
+        leftPaneWrapper.getChildren().add(viewFactory.getSingleColumnView(weather,forecast));
     }
 
     private void setUpRightColumnData(String cityName){
-        rightColWeatherUpdate(cityName);
-        rightColForecastUpdate(cityName);
-    }
+        Weather weather = weatherService.getWeather(cityName);
+        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(cityName));
 
-    private void leftColWeatherUpdate(String leftColCityName) {
-
-            Platform.runLater(() ->{
-                Weather weather = weatherService.getWeather(leftColCityName);
-                leftColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-                leftColCity.setText(weather.getCityName());
-                leftColWeatherConditions.setText(weather.getConditions());
-                leftColConditionsIcon.setImage(weather.getCurrentConditionsImage());
-            });
-    }
-
-    private void rightColWeatherUpdate(String rightColCityName) {
-
-            Platform.runLater( () -> {
-                Weather weather = weatherService.getWeather(rightColCityName);
-                rightColTemperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-                rightColCity.setText(weather.getCityName());
-                rightColWeatherConditions.setText(weather.getConditions());
-                rightColConditionsIcon.setImage(weather.getCurrentConditionsImage());
-            });
-    }
-
-    private void leftColForecastUpdate(String leftColCityName){
-
-        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(leftColCityName));
-        Platform.runLater( () -> leftColForecastTableView.setItems(forecast));
-
-        leftColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
-        leftColForecastTemp.setCellValueFactory(data -> {
-            int temp =  data.getValue().getTempInCelsius();
-            return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
-        });
-        leftColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
-
-        leftColForecastConditionsIcon.setCellFactory(tableCell ->{
-            final ImageView imageView = new ImageView();
-            imageView.setFitHeight(40);
-            imageView.setFitWidth(40);
-            TableCell<Weather, Image> cell = new TableCell<>() {
-                protected void updateItem(Image item, boolean empty) {
-                    if (item != null) {
-                        imageView.setImage(item);
-                    }
-                }
-            };
-            cell.setGraphic(imageView);
-            return cell;
-        });
-        leftColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
-    }
-
-    private void rightColForecastUpdate(String rightColCityName){
-
-        ObservableList<Weather> forecast = FXCollections.observableArrayList(weatherService.getForecast(rightColCityName));
-        Platform.runLater( () -> rightColForecastTableView.setItems(forecast));
-
-        rightColForecastDay.setCellValueFactory(data -> data.getValue().getDayOfTheWeekProperty());
-        rightColForecastTemp.setCellValueFactory(data -> {
-            int temp =  data.getValue().getTempInCelsius();
-            return new SimpleStringProperty(convertToDegreeAndCelsiusFormat(temp));
-        });
-        rightColForecastConditions.setCellValueFactory(data ->  data.getValue().getConditionsProperty());
-
-        rightColForecastConditionsIcon.setCellFactory(tableCell ->{
-            final ImageView imageView = new ImageView();
-            imageView.setFitHeight(40);
-            imageView.setFitWidth(40);
-            TableCell<Weather, Image> cell = new TableCell<>() {
-                protected void updateItem(Image item, boolean empty) {
-                    if (item != null) {
-                        imageView.setImage(item);
-                    }
-                }
-            };
-            cell.setGraphic(imageView);
-            return cell;
-        });
-        rightColForecastConditionsIcon.setCellValueFactory(data -> data.getValue().getImageProperty());
-    }
-    private String convertToDegreeAndCelsiusFormat(int temperatureInt){
-        return temperatureInt + "\u00B0 C";
+        rightPaneWrapper.getChildren().clear();
+        rightPaneWrapper.getChildren().add(viewFactory.getSingleColumnView(weather,forecast));
     }
 
     private void setupLoseFocusWhenClickedOutside(){
 
         mainViewRootAnchorPane.getScene().setOnMousePressed(event -> {
-            if (!leftColCity.equals(event.getSource()) || !rightColCity.equals(event.getSource())) {
+            if (!leftColCity.equals(event.getSource())) {
                 mainViewRootAnchorPane.requestFocus();
                 if (!isLeftColCityUpdated){
                     leftColCity.fireEvent(new ActionEvent());
                 }
-                if (!isRightColCityUpdated){
+            }
+            if (!rightColCity.equals(event.getSource())){
+                mainViewRootAnchorPane.requestFocus();
+                if(!isRightColCityUpdated){
                     rightColCity.fireEvent(new ActionEvent());
                 }
             }
@@ -283,7 +174,6 @@ public class MainViewController extends BaseController implements Initializable{
         leftColCity.textProperty().addListener( ((observableValue, s, t1) -> {
             isLeftColCityUpdated = false;
         }));
-
         rightColCity.textProperty().addListener(((observableValue, s, t1) -> {
             isRightColCityUpdated = false;
         }));

@@ -1,14 +1,18 @@
 package org.openjfx.view;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.openjfx.controller.BaseController;
 import org.openjfx.controller.MainViewController;
 import org.openjfx.controller.OptionsController;
+import org.openjfx.controller.SingleColumnController;
+import org.openjfx.model.Weather;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +61,11 @@ public class ViewFactory {
         }
     }
 
+    public Parent getSingleColumnView(Weather weather, ObservableList<Weather> forecast){
+        BaseController controller = new SingleColumnController(this,"/fxml/ColumnView.fxml", weather, forecast);
+        return getParentFromFxml(controller);
+    }
+
     private void initializeStage(BaseController baseController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
         fxmlLoader.setController(baseController);
@@ -84,6 +93,19 @@ public class ViewFactory {
 
         activeStages.add(stage);
         updateStyles();
+    }
+
+    private Parent getParentFromFxml(BaseController baseController){
+        AnchorPane anchorPane = new AnchorPane();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ColumnView.fxml"));
+        fxmlLoader.setController(baseController);
+
+        try {
+            anchorPane = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return anchorPane;
     }
     public void closeStage(Stage stageToClose){
         stageToClose.close();
