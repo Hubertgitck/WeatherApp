@@ -31,6 +31,11 @@ public final class OptionsController extends BaseController implements Initializ
     private Slider fontSizePicker;
     @FXML
     private ChoiceBox<ColorTheme> themePicker;
+
+    public OptionsController(ViewFactory viewFactory, String fxmlName) {
+        super(viewFactory, fxmlName);
+    }
+
     @FXML
     void applyButtonOnAction() {
         viewFactory.setColorTheme(themePicker.getValue());
@@ -53,7 +58,6 @@ public final class OptionsController extends BaseController implements Initializ
     void exitOnMouseExited() {
         exitButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.CLOSE_WHITE),20,20));
     }
-
     @FXML
     void applyOnMouseEntered() {
         setUpButtonGreen(applyButton);
@@ -73,11 +77,6 @@ public final class OptionsController extends BaseController implements Initializ
     void cancelOnMouseExited() {
         setUpButtonDefault(cancelButton);
     }
-
-    public OptionsController(ViewFactory viewFactory, String fxmlName) {
-        super(viewFactory, fxmlName);
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -123,7 +122,6 @@ public final class OptionsController extends BaseController implements Initializ
         });
         fontSizePicker.valueProperty().addListener((obs, oldVal, newVal) -> fontSizePicker.setValue(newVal.intValue()));
     }
-
 
     private void setUpButtonDefault(Button button){
         if (viewFactory.getColorTheme() == ColorTheme.LIGHT){

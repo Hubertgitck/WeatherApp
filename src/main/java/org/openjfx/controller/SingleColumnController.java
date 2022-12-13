@@ -3,7 +3,6 @@ package org.openjfx.controller;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import org.openjfx.model.Weather;
 import org.openjfx.view.ViewFactory;
 
@@ -21,8 +19,8 @@ import java.util.ResourceBundle;
 
 public class SingleColumnController extends BaseController implements Initializable {
 
-    private Weather weather;
-    private ObservableList<Weather> forecast;
+    private final Weather weather;
+    private final ObservableList<Weather> forecast;
 
     @FXML
     private ImageView conditionsIcon;
@@ -43,16 +41,6 @@ public class SingleColumnController extends BaseController implements Initializa
     private TableColumn<Weather, String> forecastTemperatureCol;
     @FXML
     private TableColumn<Weather, String> forecastDayCol;
-
-    @FXML
-    void cityName(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cityNameOnMouseClicked(MouseEvent event) {
-
-    }
 
     public SingleColumnController(ViewFactory viewFactory, String fxmlName, Weather weather, ObservableList<Weather> forecast) {
         super(viewFactory, fxmlName);

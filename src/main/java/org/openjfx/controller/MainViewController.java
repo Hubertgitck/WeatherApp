@@ -25,11 +25,8 @@ import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
-
     private boolean isLeftColCityUpdated = false;
     private boolean isRightColCityUpdated = false;
-
-
     @FXML
     private AnchorPane mainViewRootAnchorPane;
     @FXML
@@ -44,6 +41,11 @@ public class MainViewController extends BaseController implements Initializable{
     private Button menuButton;
     @FXML
     private Button exitButton;
+
+    public MainViewController(ViewFactory viewFactory, String fxmlName) {
+        super(viewFactory, fxmlName);
+    }
+
     @FXML
     void exitButtonAction() {
         Platform.exit();
@@ -52,7 +54,6 @@ public class MainViewController extends BaseController implements Initializable{
     void menuOnMouseEntered() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_GREEN),30,30));
     }
-
     @FXML
     void menuOnMouseExited() {
         menuButton.setGraphic(imageFactory.getImageView(IconsEnum.getIconPath(IconsEnum.MENU_WHITE),30,30));
@@ -77,29 +78,22 @@ public class MainViewController extends BaseController implements Initializable{
     void rightColCityOnMouseClicked() {
         setupLoseFocusWhenClickedOutside();
     }
-
     @FXML
     void leftColCityAction() {
         String leftCity = leftColCity.getText();
-        if (!leftCity.isEmpty()){
+        if (leftCity != null && !leftCity.isEmpty()){
             setUpLeftColumnData(leftCity);
         }
         isLeftColCityUpdated = true;
     }
-
     @FXML
     void rightColCityAction(){
         String rightCity = rightColCity.getText();
 
-        if (!rightCity.isEmpty()){
+        if (rightCity != null && !rightCity.isEmpty()){
             setUpRightColumnData(rightCity);
         }
         isRightColCityUpdated = true;
-    }
-
-
-    public MainViewController(ViewFactory viewFactory, String fxmlName) {
-        super(viewFactory, fxmlName);
     }
 
     @Override
@@ -171,12 +165,8 @@ public class MainViewController extends BaseController implements Initializable{
     }
 
     private void setUpTextFieldsListener(){
-        leftColCity.textProperty().addListener( ((observableValue, s, t1) -> {
-            isLeftColCityUpdated = false;
-        }));
-        rightColCity.textProperty().addListener(((observableValue, s, t1) -> {
-            isRightColCityUpdated = false;
-        }));
+        leftColCity.textProperty().addListener( ((observableValue, s, t1) -> isLeftColCityUpdated = false));
+        rightColCity.textProperty().addListener(((observableValue, s, t1) -> isRightColCityUpdated = false));
     }
 
     public void saveToPersistence(){

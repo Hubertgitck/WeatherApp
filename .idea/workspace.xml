@@ -9,16 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Added http client + all of its helper classes. Refactored persistence class (added PersistenceState class)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ColumnView.fxml" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeDefault.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/themeLight.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/themeLight.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientServiceFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/iHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/iHttpClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +33,10 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -318,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670865125055</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Completely rebuild MainViewController, separated SingleColumnController">
+      <created>1670953252956</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1670953252956</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,6 +369,8 @@
     <MESSAGE value="pom xml removing unnecessary dependencies" />
     <MESSAGE value="more pom.xml refactoring" />
     <MESSAGE value="Added http client + all of its helper classes. Refactored persistence class (added PersistenceState class)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added http client + all of its helper classes. Refactored persistence class (added PersistenceState class)" />
+    <MESSAGE value="Completely rebuild MainViewController, separated SingleColumnController" />
+    <MESSAGE value="Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
   </component>
 </project>

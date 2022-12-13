@@ -7,9 +7,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 import org.openjfx.Config;
-import org.openjfx.model.HttpClientService;
-import org.openjfx.model.HttpClientServiceFactory;
 import org.openjfx.model.Weather;
+import org.openjfx.model.httpClient.OkHttp;
 
 import java.io.IOException;
 import java.time.*;
@@ -21,13 +20,13 @@ public class OpenWeatherClient implements WeatherClient {
     private static final int NUMBER_OF_DAYS_IN_FORECAST = 5;
     private final String API_KEY = Config.API_KEY;
     private final ObjectMapper objectMapper;
-    private final HttpClientService httpClient;
+    private final OkHttp httpClient;
 
     private record CityData(String cityName, double latitude, double longitude) {}
 
     public OpenWeatherClient() {
         this.objectMapper = new ObjectMapper();
-        this.httpClient = HttpClientServiceFactory.createHttpClientService();
+        this.httpClient = new OkHttp();
     }
 
     @Override
@@ -65,7 +64,7 @@ public class OpenWeatherClient implements WeatherClient {
         CityData cityData;
         String responseJsonAsString;
 
-        responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
+        responseJsonAsString = httpClient.getResponseFromApiAsJSONString(urlString);
         responseJsonAsString = trimWrappingSquareBracketsFromResponse(responseJsonAsString);
 
         if (responseJsonAsString.length() > 0){
@@ -91,7 +90,7 @@ public class OpenWeatherClient implements WeatherClient {
                 cityData.longitude() + "&lang=pl&appid=" + API_KEY +"&units=metric";
         String responseJsonAsString;
 
-        responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
+        responseJsonAsString = httpClient.getResponseFromApiAsJSONString(urlString);
 
         WeatherPOJO weatherPOJO;
         try {
@@ -116,7 +115,7 @@ public class OpenWeatherClient implements WeatherClient {
         String urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityData.latitude() + "&lon=" +
                 cityData.longitude() + "&lang=pl&appid=" + API_KEY + "&units=metric";
 
-        String responseJsonAsString = httpClient.getResponseAsJSONString(urlString);
+        String responseJsonAsString = httpClient.getResponseFromApiAsJSONString(urlString);
 
         try {
             response = objectMapper.readValue(responseJsonAsString, ForecastResponse.class);

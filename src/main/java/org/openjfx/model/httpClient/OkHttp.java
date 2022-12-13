@@ -9,12 +9,10 @@ import java.io.IOException;
 public class OkHttp implements iHttpClient{
 
     private final OkHttpClient client = new OkHttpClient();
-    private Request request;
-    private Response response;
 
     public String getResponseFromApiAsJSONString(String url){
-        request = requestBuilder(url);
-        response = getResponseFromRequest(request);
+        Request request = requestBuilder(url);
+        Response response = getResponseFromRequest(request);
 
         try {
             return response.body().string();
