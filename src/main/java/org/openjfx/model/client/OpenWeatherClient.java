@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OpenWeatherClient implements WeatherClient {
 
-    OpenWeatherImplementation openWeather = new OpenWeatherImplementation();
+    OpenWeatherImplementation openWeather;
 
     public OpenWeatherClient(OpenWeatherImplementation openWeather) {
         this.openWeather = openWeather;
