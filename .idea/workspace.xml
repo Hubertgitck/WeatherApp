@@ -9,16 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Refactoring">
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Refactored httpclient. Remove httpclient service and httpclientservicefactory">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherStub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/client/OpenWeatherClientTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/httpClient/OkHttpTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/OptionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/HttpClientServiceFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Persistence/Persistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/PersistenceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Persistence/PersistenceState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherServiceFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/iHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/iHttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/rememberedCities.ser" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,11 +38,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,7 +76,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Hubert/Desktop/Kurs/Java/MojaAplikacjaPogodowa/WeatherApplication/src/test/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
@@ -95,17 +101,18 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.openjfx.model.client" />
+      <recent name="org.openjfx.model.httpClient" />
       <recent name="org.openjfx.model" />
       <recent name="org.openjfx.controller" />
       <recent name="org.openjfx.view" />
-      <recent name="org.openjfx.model.client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.openjfx.model" />
       <recent name="org.openjfx.view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
+  <component name="RunManager" selected="JUnit.OpenWeatherClientTest">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.openjfx.Launcher" />
       <module name="WeatherApp" />
@@ -127,60 +134,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OkHttpTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
+          <option name="PATTERN" value="org.openjfx.model.httpClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.model" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
+      <option name="PACKAGE_NAME" value="org.openjfx.model.httpClient" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.httpClient.OkHttpTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherServiceTest.shouldReturnForecastList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OpenWeatherClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
+          <option name="PATTERN" value="org.openjfx.model.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.model" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
-      <option name="METHOD_NAME" value="shouldReturnForecastList" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.openjfx.model.client" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.client.OpenWeatherClientTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherServiceTest.shouldReturnWeatherObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.model.httpClient.OkHttp" />
+          <option name="PATTERN" value="org.openjfx.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.model" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.WeatherServiceTest" />
-      <option name="METHOD_NAME" value="shouldReturnWeatherObject" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OpenWeatherClientTest" />
         <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.All in WeatherApp" />
-        <item itemvalue="JUnit.WeatherServiceTest.shouldReturnWeatherObject" />
-        <item itemvalue="JUnit.WeatherServiceTest.shouldReturnForecastList" />
-        <item itemvalue="JUnit.WeatherServiceTest" />
+        <item itemvalue="JUnit.OkHttpTest" />
+        <item itemvalue="JUnit.PersistenceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670953252956</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Refactored httpclient. Remove httpclient service and httpclientservicefactory">
+      <created>1670955922196</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1670955922196</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -371,6 +383,27 @@
     <MESSAGE value="Added http client + all of its helper classes. Refactored persistence class (added PersistenceState class)" />
     <MESSAGE value="Completely rebuild MainViewController, separated SingleColumnController" />
     <MESSAGE value="Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+    <MESSAGE value="Refactored httpclient. Remove httpclient service and httpclientservicefactory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored httpclient. Remove httpclient service and httpclientservicefactory" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/openjfx/Launcher.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WeatherApplication$PersistenceTest.ic" NAME="PersistenceTest Coverage Results" MODIFIED="1671040219909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.openjfx.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/WeatherApplication$OpenWeatherClientTest.ic" NAME="OpenWeatherClientTest Coverage Results" MODIFIED="1671126196746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.openjfx.model.client.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/WeatherApplication$All_in_WeatherApp.ic" NAME="All in WeatherApp Coverage Results" MODIFIED="1671122339938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

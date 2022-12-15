@@ -13,5 +13,5 @@ module org.openjfx {
 
     exports org.openjfx;
     opens org.openjfx.model.httpClient to com.fasterxml.jackson.databind, javafx.base;
-    opens org.openjfx.controller.Persistence to javafx.fxml;
+    opens org.openjfx.model.Persistence to javafx.fxml;
 }

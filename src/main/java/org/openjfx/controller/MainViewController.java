@@ -10,8 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import org.openjfx.controller.Persistence.Persistence;
-import org.openjfx.controller.Persistence.PersistenceState;
+import org.openjfx.model.Persistence.Persistence;
+import org.openjfx.model.Persistence.PersistenceState;
 import org.openjfx.model.Weather;
 import org.openjfx.model.WeatherService;
 import org.openjfx.model.WeatherServiceFactory;
@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class MainViewController extends BaseController implements Initializable{
     private WeatherService weatherService;
+    private Persistence persistence = new Persistence();
     private boolean isLeftColCityUpdated = false;
     private boolean isRightColCityUpdated = false;
     @FXML
@@ -115,14 +116,13 @@ public class MainViewController extends BaseController implements Initializable{
     }
     private void setUpInitialData() {
 
-        PersistenceState persistenceState = Persistence.getPersistenceState();
-
-        viewFactory.setColorTheme(persistenceState.getColorTheme());
-        viewFactory.setFontSize(persistenceState.getFontSize());
+        PersistenceState persistenceState = persistence.getPersistenceState();
 
         if (persistenceState.getNumberOfCitiesSavedToPersistence() > 0){
             leftColCity.textProperty().set(persistenceState.getLeftCity());
             setUpLeftColumnData(leftColCity.getText());
+            viewFactory.setColorTheme(persistenceState.getColorTheme());
+            viewFactory.setFontSize(persistenceState.getFontSize());
         }
         if (persistenceState.getNumberOfCitiesSavedToPersistence() > 1) {
             rightColCity.textProperty().set(persistenceState.getRightCity());
@@ -183,6 +183,6 @@ public class MainViewController extends BaseController implements Initializable{
             persistenceList.add(rightColCity.getText());
         }
 
-        Persistence.saveToPersistence(persistenceList);
+        persistence.saveToPersistence(persistenceList);
     }
 }

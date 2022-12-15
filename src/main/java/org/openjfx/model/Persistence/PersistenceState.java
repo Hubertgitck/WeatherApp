@@ -1,4 +1,4 @@
-package org.openjfx.controller.Persistence;
+package org.openjfx.model.Persistence;
 
 import org.openjfx.view.ColorTheme;
 import org.openjfx.view.FontSize;
