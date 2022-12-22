@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.scene.image.Image;
 import org.openjfx.Config;
 import org.openjfx.model.Weather;
 import org.openjfx.model.httpClient.OkHttp;
@@ -24,9 +23,9 @@ public class OpenWeatherImplementation {
 
     private record CityData(String cityName, double latitude, double longitude) {}
 
-    public OpenWeatherImplementation() {
+    public OpenWeatherImplementation(OkHttp okHttp) {
         this.objectMapper = new ObjectMapper();
-        this.httpClient = new OkHttp();
+        this.httpClient = okHttp;
     }
 
     public Weather getWeather(String cityName) {
@@ -75,7 +74,7 @@ public class OpenWeatherImplementation {
                 capitalize(weatherPOJO.getConditionsDescription()),
                 weatherPOJO.main.getTemperature(),
                 weatherPOJO.getDateAsText(),
-                getConditionsIcon(weatherPOJO.getWeather().get(0).getIcon()),
+                getConditionsIconUrl(weatherPOJO.getConditionsIconId()),
                 getDayFromUnixTimestamp(weatherPOJO.getDateAsEpochSeconds())
         );
     }
@@ -110,7 +109,7 @@ public class OpenWeatherImplementation {
                             element.getConditionsDescription(),
                             element.main.getTemperature(),
                             element.getDateAsText(),
-                            getConditionsIcon(element.getWeather().get(0).getIcon()),
+                            getConditionsIconUrl(element.getConditionsIconId()),
                             getDayFromUnixTimestamp(element.getDateAsEpochSeconds())
                     );
                     forecast.add(weather);
@@ -148,12 +147,11 @@ public class OpenWeatherImplementation {
         return cityData;
     }
 
-    private Image getConditionsIcon(String iconId){
+    private String getConditionsIconUrl(String iconId){
 
         iconId = removeQuotes(iconId);
-        String urlString = "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
 
-        return new Image(urlString);
+        return "http://openweathermap.org/img/wn/" + iconId +"@2x.png";
     }
 
     private boolean isCityDataCorrect(CityData cityData) {
@@ -238,6 +236,8 @@ public class OpenWeatherImplementation {
         public List<WeatherData> getWeather() {
             return weather;
         }
+
+        public String getConditionsIconId(){return  weather.get(0).getIcon();}
 
         public String getConditionsDescription(){
             return weather.get(0).getDescription();

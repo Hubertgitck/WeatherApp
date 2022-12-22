@@ -1,6 +1,7 @@
 package org.openjfx.controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,8 +59,8 @@ public class SingleColumnController extends BaseController implements Initializa
         Platform.runLater(() ->{
 
             temperature.setText(convertToDegreeAndCelsiusFormat(weather.getTempInCelsius()));
-            weatherConditions.setText(weather.getConditions());
-            conditionsIcon.setImage(weather.getCurrentConditionsImage());
+            weatherConditions.setText(weather.getConditions().get());
+            conditionsIcon.setImage(imageFactory.getImageFromUrl(weather.getIconStringProperty()));
         });
     }
 
@@ -88,10 +89,14 @@ public class SingleColumnController extends BaseController implements Initializa
             cell.setGraphic(imageView);
             return cell;
         });
-        forecastConditionsIconCol.setCellValueFactory(data -> data.getValue().getImageProperty());
+        forecastConditionsIconCol.setCellValueFactory(data ->{
+            Image image = imageFactory.getImageFromUrl(data.getValue().getIconStringProperty().get());
+            return new SimpleObjectProperty<>(image);
+        });
     }
 
     private String convertToDegreeAndCelsiusFormat(int temperatureInt){
         return temperatureInt + "\u00B0 C";
     }
+
 }

@@ -9,22 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Refactored httpclient. Remove httpclient service and httpclientservicefactory">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherStub.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/client/OpenWeatherClientTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/httpClient/OkHttpTest.java" afterDir="false" />
+    <list default="true" id="d6d782cc-3011-4507-bcf0-4b96cbc4fd5a" name="Changes" comment="Small unnecessary object creation fix.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/client/OpenWeatherImplementationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/Persistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Persistence/Persistence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/Persistence/PersistenceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Persistence/PersistenceState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/controller/SingleColumnController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/Weather.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/WeatherServiceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/controller/PersistenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/rememberedCities.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/client/OpenWeatherImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/model/httpClient/OkHttp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openjfx/view/ImageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/openjfx/model/WeatherStub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/openjfx/model/httpClient/OkHttpTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +36,13 @@
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="options-window" />
+    <option name="BRANCH" value="Patch_fixing_bugs" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -112,7 +107,7 @@
       <recent name="org.openjfx.view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OpenWeatherClientTest">
+  <component name="RunManager" selected="JUnit.All in WeatherApp">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.openjfx.Launcher" />
       <module name="WeatherApp" />
@@ -164,16 +159,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OpenWeatherImplementationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WeatherApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.openjfx.controller.*" />
+          <option name="PATTERN" value="org.openjfx.model.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.openjfx.controller" />
-      <option name="MAIN_CLASS_NAME" value="org.openjfx.controller.PersistenceTest" />
+      <option name="PACKAGE_NAME" value="org.openjfx.model.client" />
+      <option name="MAIN_CLASS_NAME" value="org.openjfx.model.client.OpenWeatherImplementationTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.OpenWeatherClientTest" />
-        <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.All in WeatherApp" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="JUnit.OpenWeatherImplementationTest" />
+        <item itemvalue="JUnit.OpenWeatherClientTest" />
         <item itemvalue="JUnit.OkHttpTest" />
-        <item itemvalue="JUnit.PersistenceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -337,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670955922196</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Small unnecessary object creation fix.">
+      <created>1671126533845</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671126533845</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -384,7 +386,8 @@
     <MESSAGE value="Completely rebuild MainViewController, separated SingleColumnController" />
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Refactored httpclient. Remove httpclient service and httpclientservicefactory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored httpclient. Remove httpclient service and httpclientservicefactory" />
+    <MESSAGE value="Small unnecessary object creation fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small unnecessary object creation fix." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

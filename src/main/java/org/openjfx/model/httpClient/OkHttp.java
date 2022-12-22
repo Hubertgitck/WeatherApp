@@ -8,7 +8,11 @@ import java.io.IOException;
 
 public class OkHttp implements iHttpClient{
 
-    private final OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client;
+
+    public OkHttp(OkHttpClient client) {
+        this.client = client;
+    }
 
     public String getResponseFromApiAsJSONString(String url){
         Request request = requestBuilder(url);

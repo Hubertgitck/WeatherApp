@@ -1,5 +1,6 @@
 package org.openjfx.view;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,5 +13,13 @@ public class ImageFactory {
         imageView.setFitHeight(height);
 
         return imageView;
+    }
+
+    public Image getImageFromUrl(String url){
+        return new Image(url);
+    }
+
+    public Image getImageFromUrl(SimpleStringProperty iconStringProperty) {
+        return new Image(iconStringProperty.get());
     }
 }
